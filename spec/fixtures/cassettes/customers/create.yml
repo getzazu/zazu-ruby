@@ -1,0 +1,107 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://staging.zazu.ma/api/customers
+    body:
+      encoding: UTF-8
+      string: '{"customer_type":"business","company_name":"Zazu SDK Fixture Co","email":"fixture@example.com","ice_number":"000000000000000"}'
+    headers:
+      User-Agent:
+      - zazu-ruby/0.1.0
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer <ZAZU_API_KEY>
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '126'
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Sun, 03 May 2026 13:13:43 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '350'
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''unsafe-eval'' ''wasm-unsafe-eval''
+        https://staging.zazu.ma https://zazu.ma https://zazu.africa https://app.intercom.io
+        https://widget.intercom.io https://js.intercomcdn.com https://js.intercomdcn.eu
+        https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
+        https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
+        https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
+        ''nonce-elHSgwXGEcbBbt2ihMQ2zg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
+        https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
+        data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
+        https://js.intercomdcn.eu https://static.intercomassets.com https://static.intercomassets.eu
+        https://downloads.intercomcdn.com https://downloads.intercomcdn.eu https://downloads.intercomdcn.eu
+        https://uploads.intercomusercontent.com https://gifs.intercomcdn.com https://gifs.intercomdcn.eu
+        https://*.intercom-attachments.eu https://*.sumsub.com https://www.google.com
+        https://*.gstatic.com https://www.google-analytics.com; media-src ''self''
+        blob: https://*.sumsub.com https://*.stripe.com https://js.intercomcdn.com
+        https://js.intercomdcn.eu; connect-src ''self'' wss://staging.zazu.ma https://api.sumsub.com
+        https://*.sumsub.com https://api.charimoney.com https://api.eu.intercom.io
+        https://api-iam.eu.intercom.io https://api-ping.intercom.io https://nexus-europe-websocket.intercom.io
+        wss://nexus-europe-websocket.intercom.io https://*.intercom-messenger.com
+        wss://*.intercom-messenger.com https://uploads.intercomcdn.com https://uploads.intercomdcn.eu
+        https://uploads.intercomcdn.eu https://uploads.eu.intercomcdn.com https://uploads.intercomusercontent.com
+        https://*.intercom-attachments.eu https://keys.evervault.com https://api.evervault.com
+        https://*.stripe.com https://www.google-analytics.com https://www.googletagmanager.com
+        https://calendly.com; frame-src ''self'' https://staging.zazu.ma https://pay.staging.zazu.ma
+        https://docs.google.com https://*.sumsub.com https://intercom-sheets.com https://www.intercom-reporting.com
+        https://www.youtube.com https://player.vimeo.com https://www.tella.tv https://ui-components.evervault.com
+        https://*.evervault.com https://js.stripe.com https://hooks.stripe.com https://calendly.com
+        https://pay.chari.com; frame-ancestors ''self'' https://staging.zazu.ma https://pay.staging.zazu.ma;
+        object-src ''none''; base-uri ''self''; form-action ''self'' https://calendly.com;
+        worker-src ''self'' blob:; child-src ''self'' blob: https://intercom-sheets.com
+        https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
+        manifest-src ''self''; report-uri /csp-violation-reports'
+      Etag:
+      - W/"005a5b308cd86958519e5aab30139bb0"
+      Referrer-Policy:
+      - same-origin
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Request-Id:
+      - "<REQUEST_ID>"
+      X-Runtime:
+      - '0.510049'
+      X-Xss-Protection:
+      - 1; mode=block
+      Zazu-Version:
+      - "<ZAZU_VERSION>"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=86400, enforce
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=zQ7o11y6N69WZC%2Ft98kS31zoPVSzVHBOqL15QIaDjgji5vGXY8FE%2BuD1GwixUyPyf0PTReELEfMQVK0EdsMvVWjoAP%2FIdozezWcVXFD3xWT2nrHtZVZsJJq2UBxXPKr4XA%3D%3D"}]}'
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9f5f864dcd00958a-LHR
+    body:
+      encoding: UTF-8
+      string: '{"id":"019dedf9-2e03-76bf-9ff4-81ee6ee9d741","person_name":null,"company_name":"Zazu
+        SDK Fixture Co","email":"fixture@example.com","phone":null,"tax_id":null,"ice_number":"000000000000000","customer_type":"business","name":"Zazu
+        SDK Fixture Co","created_at":"2026-05-03T14:13:43+01:00","updated_at":"2026-05-03T14:13:43+01:00","billing_address":null}'
+  recorded_at: Sun, 03 May 2026 13:13:43 GMT
+recorded_with: VCR 6.4.0

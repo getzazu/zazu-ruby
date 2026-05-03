@@ -17,17 +17,17 @@ module Zazu
 
       # GET /api/payment_links/:id
       def get(id)
-        super(encode_path('api/payment_links', id))
+        http_get(encode_path('api/payment_links', id))
       end
 
       # POST /api/payment_links
       def create(**attributes)
-        post('api/payment_links', body: attributes)
+        http_post('api/payment_links', body: attributes)
       end
 
       # POST /api/payment_links/:id/cancel
       def cancel(id)
-        post(encode_path('api/payment_links', id, 'cancel'))
+        http_post(encode_path('api/payment_links', id, 'cancel'))
       end
     end
   end

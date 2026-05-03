@@ -3,14 +3,21 @@
 module Zazu
   module Resources
     # Shared scaffolding for every resource module. Carries a back-
-    # reference to the client and exposes thin `get/post/patch/delete`
-    # helpers that delegate to {Zazu::Client#request}.
+    # reference to the client and exposes thin HTTP helpers that
+    # delegate to {Zazu::Client#request}.
+    #
+    # Note on naming: the helpers are `http_get`, `http_post`, etc.
+    # rather than `get`/`post` so they do not shadow the public
+    # methods on resource subclasses. Public resources commonly
+    # define a `get(id)` method, and a same-named private helper on
+    # the base class would let `Base#list_page` accidentally dispatch
+    # to the subclass version when a list endpoint is hit.
     #
     # Pagination:
     #
     #   Every resource that has a list endpoint exposes `#list` which
     #   returns a {Zazu::Page}. Callers can walk pages explicitly via
-    #   `page.next` or use `each_page` for capped iteration.
+    #   `page.next` or use `each_page_record` for capped iteration.
     class Base
       MAX_PER_PAGE = Page::MAX_PER_PAGE
 
@@ -22,19 +29,19 @@ module Zazu
 
       private
 
-      def get(path, params: nil)
+      def http_get(path, params: nil)
         client.request(:get, path, params: params)
       end
 
-      def post(path, body: nil)
+      def http_post(path, body: nil)
         client.request(:post, path, body: body)
       end
 
-      def patch(path, body: nil)
+      def http_patch(path, body: nil)
         client.request(:patch, path, body: body)
       end
 
-      def delete(path)
+      def http_delete(path)
         client.request(:delete, path)
       end
 
@@ -47,12 +54,12 @@ module Zazu
 
         fetcher = lambda { |next_cursor|
           query = params.merge(limit: validated_limit, cursor: next_cursor).compact
-          response = get(path, params: query)
+          response = http_get(path, params: query)
           Page.new(response, fetcher: fetcher)
         }
 
         initial_query = params.merge(limit: validated_limit, cursor: cursor).compact
-        response = get(path, params: initial_query)
+        response = http_get(path, params: initial_query)
         Page.new(response, fetcher: fetcher)
       end
 
@@ -101,8 +108,24 @@ module Zazu
         limit
       end
 
-      def encode_path(*segments)
-        segments.map { |s| ERB::Util.url_encode(s.to_s) }.join('/')
+      # Builds a request path by joining a literal base path with one
+      # or more dynamic segments. The base is appended verbatim; each
+      # dynamic segment is percent-encoded so an ID containing `/` or
+      # other special characters cannot escape the intended path.
+      #
+      #   encode_path('api/accounts', 'acc_xyz')
+      #     # => "api/accounts/acc_xyz"
+      #
+      #   encode_path('api/accounts', 'acc 1', 'transactions', 'tx 1')
+      #     # => "api/accounts/acc%201/transactions/tx%201"
+      def encode_path(base, *segments)
+        encoded_segments = segments.map do |s|
+          # CGI.escape replaces ' ' with '+', which is wrong for path
+          # segments. Use a manual escape that targets only characters
+          # that would change path semantics.
+          s.to_s.gsub(/[^A-Za-z0-9._~-]/) { |c| format('%%%02X', c.ord) }
+        end
+        ([base] + encoded_segments).join('/')
       end
     end
   end

@@ -15,7 +15,7 @@ module Zazu
 
       # GET /api/customers/:id
       def get(id)
-        super(encode_path('api/customers', id))
+        http_get(encode_path('api/customers', id))
       end
 
       # POST /api/customers
@@ -25,17 +25,17 @@ module Zazu
       #   person_name, company_name, email, phone, tax_id, ice_number,
       #   billing_address (Hash with street/city/postal_code/country/country_code).
       def create(**attributes)
-        post('api/customers', body: attributes)
+        http_post('api/customers', body: attributes)
       end
 
       # PATCH /api/customers/:id
       def update(id, **attributes)
-        patch(encode_path('api/customers', id), body: attributes)
+        http_patch(encode_path('api/customers', id), body: attributes)
       end
 
       # DELETE /api/customers/:id
       def delete(id)
-        super(encode_path('api/customers', id))
+        http_delete(encode_path('api/customers', id))
       end
     end
   end

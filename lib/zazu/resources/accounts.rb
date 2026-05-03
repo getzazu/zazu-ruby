@@ -23,7 +23,7 @@ module Zazu
 
       # GET /api/accounts/:id
       def get(id)
-        super(encode_path('api/accounts', id))
+        http_get(encode_path('api/accounts', id))
       end
 
       # GET /api/accounts/:account_id/transactions
@@ -45,7 +45,7 @@ module Zazu
 
       # GET /api/accounts/:account_id/transactions/:id
       def get_transaction(account_id, transaction_id)
-        super(encode_path('api/accounts', account_id, 'transactions', transaction_id))
+        http_get(encode_path('api/accounts', account_id, 'transactions', transaction_id))
       end
 
       private
