@@ -1,0 +1,42 @@
+# frozen_string_literal: true
+
+module Zazu
+  module Resources
+    # Customers — individuals or businesses the entity invoices.
+    class Customers < Base
+      # GET /api/customers
+      #
+      # @param q [String, nil] search query (matches company name, person name, email)
+      # rubocop:disable Naming/MethodParameterName
+      def list(q: nil, limit: MAX_PER_PAGE, cursor: nil)
+        list_page('api/customers', q: q, limit: limit, cursor: cursor)
+      end
+      # rubocop:enable Naming/MethodParameterName
+
+      # GET /api/customers/:id
+      def get(id)
+        super(encode_path('api/customers', id))
+      end
+
+      # POST /api/customers
+      #
+      # @param attributes [Hash] customer attributes — see API docs.
+      #   Common keys: customer_type ("individual"|"business"),
+      #   person_name, company_name, email, phone, tax_id, ice_number,
+      #   billing_address (Hash with street/city/postal_code/country/country_code).
+      def create(**attributes)
+        post('api/customers', body: attributes)
+      end
+
+      # PATCH /api/customers/:id
+      def update(id, **attributes)
+        patch(encode_path('api/customers', id), body: attributes)
+      end
+
+      # DELETE /api/customers/:id
+      def delete(id)
+        super(encode_path('api/customers', id))
+      end
+    end
+  end
+end

@@ -1,0 +1,56 @@
+require:
+  - rubocop-rspec
+  - rubocop-rake
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+  SuggestExtensions: false
+  Exclude:
+    - "vendor/**/*"
+    - "tmp/**/*"
+    - "pkg/**/*"
+    - "spec/fixtures/**/*"
+
+Layout/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 30
+
+Metrics/AbcSize:
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 150
+
+Metrics/CyclomaticComplexity:
+  Max: 12
+
+Metrics/PerceivedComplexity:
+  Max: 15
+
+Metrics/ParameterLists:
+  Max: 7
+  CountKeywordArgs: false
+
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+    - "*.gemspec"
+    - "Rakefile"
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/NestedGroups:
+  Max: 4
+
+RSpec/MultipleMemoizedHelpers:
+  Max: 7

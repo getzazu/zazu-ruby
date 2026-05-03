@@ -1,0 +1,175 @@
+name: Release
+
+# Tag-driven release. Mirrors mhenrixon/pgbus's release workflow:
+# RubyGems trusted publishing + Sigstore attestation + checksums.
+#
+# Each release also publishes a cassette tarball as a GitHub Release
+# asset so other-language SDKs (zazu-go, zazu-python, etc.) can pin
+# a version of the canonical recorded API interactions.
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: Test before release
+    strategy:
+      fail-fast: true
+      matrix:
+        ruby: ["3.3", "3.4"]
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - run: bundle exec rake spec
+
+  build:
+    needs: test
+    runs-on: ubuntu-latest
+    outputs:
+      gem_name: ${{ steps.build.outputs.gem_name }}
+      cassettes_tarball: ${{ steps.cassettes.outputs.cassettes_tarball }}
+      version: ${{ steps.build.outputs.version }}
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+          bundler-cache: true
+
+      - name: Verify tag matches gem version
+        run: |
+          GEM_VERSION=$(ruby -r ./lib/zazu/version -e "puts Zazu::VERSION")
+          TAG_VERSION="${{ github.event.release.tag_name }}"
+          TAG_VERSION="${TAG_VERSION#v}"
+          if [ "$GEM_VERSION" != "$TAG_VERSION" ]; then
+            echo "::error::Tag version ($TAG_VERSION) does not match gem version ($GEM_VERSION)"
+            exit 1
+          fi
+
+      - name: Build gem
+        id: build
+        run: |
+          gem build zazu.gemspec --strict
+          GEM_NAME=$(ls zazu-*.gem)
+          echo "gem_name=$GEM_NAME" >> "$GITHUB_OUTPUT"
+          TAG_VERSION="${{ github.event.release.tag_name }}"
+          echo "version=${TAG_VERSION#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Verify gem contents do not include cassettes or specs
+        run: |
+          GEM_NAME=$(ls zazu-*.gem)
+          gem unpack "$GEM_NAME" --target /tmp/gem-verify
+
+          UNWANTED=$(find /tmp/gem-verify \( -name ".git*" -o -name "*.gemspec" -o -name "Rakefile" \) -print)
+          if [ -n "$UNWANTED" ]; then
+            echo "::error::Unwanted files in gem:"; echo "$UNWANTED"; exit 1
+          fi
+          UNWANTED_DIRS=$(find /tmp/gem-verify -type d \( -name "spec" -o -name "test" -o -name ".github" \) -print)
+          if [ -n "$UNWANTED_DIRS" ]; then
+            echo "::error::Unwanted directories in gem:"; echo "$UNWANTED_DIRS"; exit 1
+          fi
+          echo "Gem contents look clean"
+
+      - name: Pack cassette tarball
+        id: cassettes
+        run: |
+          bundle exec rake fixtures:pack
+          TARBALL=$(ls pkg/cassettes-*.tar.gz)
+          echo "cassettes_tarball=$TARBALL" >> "$GITHUB_OUTPUT"
+
+      - name: Generate checksums
+        run: |
+          GEM_NAME=$(ls zazu-*.gem)
+          sha256sum "$GEM_NAME" > "$GEM_NAME.sha256"
+          sha512sum "$GEM_NAME" > "$GEM_NAME.sha512"
+          TARBALL=$(ls pkg/cassettes-*.tar.gz)
+          sha256sum "$TARBALL" > "$TARBALL.sha256"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: gem-and-cassettes
+          path: |
+            zazu-*.gem
+            zazu-*.gem.sha256
+            zazu-*.gem.sha512
+            pkg/cassettes-*.tar.gz
+            pkg/cassettes-*.tar.gz.sha256
+          if-no-files-found: error
+
+  publish-rubygems:
+    needs: build
+    runs-on: ubuntu-latest
+    environment: rubygems
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: gem-and-cassettes
+
+      - name: Verify checksums
+        run: sha256sum -c zazu-*.gem.sha256 && sha512sum -c zazu-*.gem.sha512
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4"
+
+      - name: Configure RubyGems trusted publishing credentials
+        uses: rubygems/configure-rubygems-credentials@v1.0.0
+
+      - name: Push to RubyGems with Sigstore attestation
+        run: |
+          GEM_NAME=$(ls zazu-*.gem)
+          gem exec sigstore-cli sign "$GEM_NAME" --bundle "$GEM_NAME.sigstore.json"
+          gem push "$GEM_NAME" --attestation "$GEM_NAME.sigstore.json"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sigstore
+          path: zazu-*.gem.sigstore.json
+          if-no-files-found: error
+
+  upload-release-assets:
+    needs: [build, publish-rubygems]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: gem-and-cassettes
+      - uses: actions/download-artifact@v4
+        with:
+          name: sigstore
+
+      - name: Upload assets to GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          GEM_NAME="${{ needs.build.outputs.gem_name }}"
+          TARBALL="${{ needs.build.outputs.cassettes_tarball }}"
+          # Strip the pkg/ prefix from the tarball name once downloaded.
+          TARBALL_BASENAME=$(basename "$TARBALL")
+          gh release upload "${{ github.event.release.tag_name }}" \
+            "$GEM_NAME" \
+            "$GEM_NAME.sha256" \
+            "$GEM_NAME.sha512" \
+            "$GEM_NAME.sigstore.json" \
+            "$TARBALL_BASENAME" \
+            "$TARBALL_BASENAME.sha256" \
+            --repo "${{ github.repository }}"
