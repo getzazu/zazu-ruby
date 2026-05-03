@@ -41,14 +41,18 @@ module Fixtures
     REQUIRED_ENV = %w[ZAZU_STAGING_API_KEY ZAZU_STAGING_URL ZAZU_FIXTURE_ACCOUNT_ID].freeze
 
     # Keys we will print to stdout, in .env-paste-ready order.
+    #
+    # Note: invoice state-transition fixtures (sendable, payable,
+    # cancellable, creditable) are not seeded here because the
+    # public API does not expose the `pending_approval → approved`
+    # transition. Without that, send/mark_as_paid/cancel/credit_note
+    # cannot be exercised in v0.1.0. Cassettes for those land in a
+    # later release once the API surfaces an approve endpoint or we
+    # build a Rails-side helper that approves fixture invoices.
     EMITTED_KEYS = %w[
       ZAZU_FIXTURE_CUSTOMER_ID
       ZAZU_FIXTURE_DELETABLE_CUSTOMER_ID
       ZAZU_FIXTURE_INVOICE_ID
-      ZAZU_FIXTURE_SENDABLE_INVOICE_ID
-      ZAZU_FIXTURE_PAYABLE_INVOICE_ID
-      ZAZU_FIXTURE_CANCELLABLE_INVOICE_ID
-      ZAZU_FIXTURE_CREDITABLE_INVOICE_ID
       ZAZU_FIXTURE_DELETABLE_INVOICE_ID
       ZAZU_FIXTURE_PAYMENT_LINK_ID
       ZAZU_FIXTURE_CANCELLABLE_PAYMENT_LINK_ID
@@ -155,26 +159,17 @@ module Fixtures
     def seed_invoices!
       customer_id = @ids.fetch('ZAZU_FIXTURE_CUSTOMER_ID')
 
-      # 6 drafts for: read-only, deletable, sendable, payable,
-      # cancellable, creditable. Promote the latter ones through the
-      # state machine after creation.
-      drafts = 6.times.map { |i| create_draft_invoice!(customer_id, i) }
+      # Two invoices in the API's default starting state
+      # (`pending_approval`): one for read-only specs (list/get/
+      # update), one earmarked for the delete spec.
+      #
+      # The send/mark_as_paid/cancel/credit_note specs need invoices
+      # in the `approved` and `sent` states, which the public API
+      # cannot transition into. Those specs are skipped in v0.1.0.
+      drafts = Array.new(2) { |i| create_draft_invoice!(customer_id, i) }
 
       @ids['ZAZU_FIXTURE_INVOICE_ID'] = drafts[0]
       @ids['ZAZU_FIXTURE_DELETABLE_INVOICE_ID'] = drafts[1]
-      @ids['ZAZU_FIXTURE_SENDABLE_INVOICE_ID'] = drafts[2]
-
-      # Promote the payable + cancellable drafts to sent.
-      @client.invoices.send_invoice(drafts[3])
-      @ids['ZAZU_FIXTURE_PAYABLE_INVOICE_ID'] = drafts[3]
-
-      @client.invoices.send_invoice(drafts[4])
-      @ids['ZAZU_FIXTURE_CANCELLABLE_INVOICE_ID'] = drafts[4]
-
-      # Promote the creditable invoice through send → mark_as_paid.
-      @client.invoices.send_invoice(drafts[5])
-      @client.invoices.mark_as_paid(drafts[5])
-      @ids['ZAZU_FIXTURE_CREDITABLE_INVOICE_ID'] = drafts[5]
     end
 
     def create_draft_invoice!(customer_id, idx)
