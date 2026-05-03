@@ -73,9 +73,10 @@ module Fixtures
     def run!
       log 'Checking for stale fixtures…'
       stale = find_stale_fixtures
-      unless stale.empty?
+      total_stale = stale.values.sum(&:size)
+      if total_stale.positive?
         warn '!! Existing fixture records found on staging. Run `rake fixtures:teardown` first:'
-        stale.each { |kind, items| warn "    #{kind}: #{items.size} record(s)" }
+        stale.each { |kind, items| warn "    #{kind}: #{items.size} record(s)" if items.any? }
         exit 1
       end
 
