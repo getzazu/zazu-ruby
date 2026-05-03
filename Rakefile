@@ -9,6 +9,12 @@ RuboCop::RakeTask.new
 
 task default: %i[spec rubocop]
 
+# fixtures:seed and fixtures:teardown live in lib/tasks/fixtures.rake.
+# They share the namespace with record and record_new defined below
+# but are loaded from the file so the seeder code stays out of the
+# Rakefile.
+load File.expand_path('lib/tasks/fixtures.rake', __dir__)
+
 namespace :fixtures do
   desc 'Re-record all VCR cassettes against the staging API. Requires .env with ZAZU_STAGING_API_KEY.'
   task :record do
