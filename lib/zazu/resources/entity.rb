@@ -7,7 +7,7 @@ module Zazu
     #   client.entity.get  # => Zazu::Response
     class Entity < Base
       def get
-        http_get('api/entity')
+        http_get("api/entity")
       end
     end
   end

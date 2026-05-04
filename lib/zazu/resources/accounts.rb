@@ -13,7 +13,7 @@ module Zazu
       # @return [Zazu::Page]
       def list(status: nil, currency_code: nil, limit: MAX_PER_PAGE, cursor: nil)
         list_page(
-          'api/accounts',
+          "api/accounts",
           status: status,
           currency_code: currency_code,
           limit: limit,
@@ -23,7 +23,7 @@ module Zazu
 
       # GET /api/accounts/:id
       def get(id)
-        http_get(encode_path('api/accounts', id))
+        http_get(encode_path("api/accounts", id))
       end
 
       # GET /api/accounts/:account_id/transactions
@@ -34,7 +34,7 @@ module Zazu
       def list_transactions(account_id, operation: nil, posted_after: nil, posted_before: nil, limit: MAX_PER_PAGE,
                             cursor: nil)
         list_page(
-          encode_path('api/accounts', account_id, 'transactions'),
+          encode_path("api/accounts", account_id, "transactions"),
           operation: operation,
           posted_after: serialize_time(posted_after),
           posted_before: serialize_time(posted_before),
@@ -45,7 +45,7 @@ module Zazu
 
       # GET /api/accounts/:account_id/transactions/:id
       def get_transaction(account_id, transaction_id)
-        http_get(encode_path('api/accounts', account_id, 'transactions', transaction_id))
+        http_get(encode_path("api/accounts", account_id, "transactions", transaction_id))
       end
 
       private

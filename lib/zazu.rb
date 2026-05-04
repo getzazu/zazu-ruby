@@ -16,15 +16,15 @@ module Zazu
   end
 end
 
-require_relative 'zazu/version'
-require_relative 'zazu/errors'
-require_relative 'zazu/response'
-require_relative 'zazu/page'
-require_relative 'zazu/resources/base'
-require_relative 'zazu/resources/accounts'
-require_relative 'zazu/resources/customers'
-require_relative 'zazu/resources/entity'
-require_relative 'zazu/resources/invoices'
-require_relative 'zazu/resources/payment_links'
-require_relative 'zazu/resources/webhook_endpoints'
-require_relative 'zazu/client'
+require_relative "zazu/version"
+require_relative "zazu/errors"
+require_relative "zazu/response"
+require_relative "zazu/page"
+require_relative "zazu/resources/base"
+require_relative "zazu/resources/accounts"
+require_relative "zazu/resources/customers"
+require_relative "zazu/resources/entity"
+require_relative "zazu/resources/invoices"
+require_relative "zazu/resources/payment_links"
+require_relative "zazu/resources/webhook_endpoints"
+require_relative "zazu/client"

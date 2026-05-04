@@ -7,15 +7,13 @@ module Zazu
       # GET /api/customers
       #
       # @param q [String, nil] search query (matches company name, person name, email)
-      # rubocop:disable Naming/MethodParameterName
       def list(q: nil, limit: MAX_PER_PAGE, cursor: nil)
-        list_page('api/customers', q: q, limit: limit, cursor: cursor)
+        list_page("api/customers", q: q, limit: limit, cursor: cursor)
       end
-      # rubocop:enable Naming/MethodParameterName
 
       # GET /api/customers/:id
       def get(id)
-        http_get(encode_path('api/customers', id))
+        http_get(encode_path("api/customers", id))
       end
 
       # POST /api/customers
@@ -25,17 +23,17 @@ module Zazu
       #   person_name, company_name, email, phone, tax_id, ice_number,
       #   billing_address (Hash with street/city/postal_code/country/country_code).
       def create(**attributes)
-        http_post('api/customers', body: attributes)
+        http_post("api/customers", body: attributes)
       end
 
       # PATCH /api/customers/:id
       def update(id, **attributes)
-        http_patch(encode_path('api/customers', id), body: attributes)
+        http_patch(encode_path("api/customers", id), body: attributes)
       end
 
       # DELETE /api/customers/:id
       def delete(id)
-        http_delete(encode_path('api/customers', id))
+        http_delete(encode_path("api/customers", id))
       end
     end
   end

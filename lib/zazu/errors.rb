@@ -21,7 +21,7 @@ module Zazu
 
     def to_h
       {
-        error: self.class.name.split('::').last,
+        error: self.class.name.split("::").last,
         message:,
         status:,
         request_id:,

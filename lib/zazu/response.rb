@@ -13,7 +13,7 @@ module Zazu
 
     def initialize(raw, request_id: nil)
       @raw = raw
-      @request_id = request_id || raw.headers['x-request-id']
+      @request_id = request_id || raw.headers["x-request-id"]
     end
 
     def status
@@ -39,13 +39,13 @@ module Zazu
     def data
       return body unless body.is_a?(Hash)
 
-      body.key?('data') ? body['data'] : body
+      body.key?("data") ? body["data"] : body
     end
 
     # The Zazu-Version header echoed by the server. Useful for
     # debugging migration mismatches.
     def api_version
-      headers['zazu-version']
+      headers["zazu-version"]
     end
 
     def to_h

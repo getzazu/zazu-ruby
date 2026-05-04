@@ -33,14 +33,14 @@ module Zazu
       @fetcher = fetcher
 
       body = response.body
-      unless body.is_a?(Hash) && body['data'].is_a?(Array)
+      unless body.is_a?(Hash) && body["data"].is_a?(Array)
         raise Zazu::Error.new("List response missing 'data' array",
                               body:)
       end
 
-      @data = body['data']
-      @has_more = body.fetch('has_more', false)
-      @next_cursor = body['next_cursor']
+      @data = body["data"]
+      @has_more = body.fetch("has_more", false)
+      @next_cursor = body["next_cursor"]
     end
 
     def request_id
