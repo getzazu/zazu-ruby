@@ -1,0 +1,104 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://staging.zazu.ma/api/payment_links/019df248-612c-74a6-a8e2-ad409b4ebb1b
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <ZAZU_API_KEY>
+      User-Agent:
+      - zazu-ruby/0.1.0
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 04 May 2026 09:19:04 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Cache-Control:
+      - max-age=0, private, must-revalidate
+      Content-Security-Policy:
+      - 'default-src ''self''; script-src ''self'' ''unsafe-eval'' ''wasm-unsafe-eval''
+        https://staging.zazu.ma https://zazu.ma https://zazu.africa https://app.intercom.io
+        https://widget.intercom.io https://js.intercomcdn.com https://js.intercomdcn.eu
+        https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
+        https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
+        https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
+        ''nonce-t4WGDLnDn4JYnFX0ko3yLg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
+        https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
+        data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
+        https://js.intercomdcn.eu https://static.intercomassets.com https://static.intercomassets.eu
+        https://downloads.intercomcdn.com https://downloads.intercomcdn.eu https://downloads.intercomdcn.eu
+        https://uploads.intercomusercontent.com https://gifs.intercomcdn.com https://gifs.intercomdcn.eu
+        https://*.intercom-attachments.eu https://*.sumsub.com https://www.google.com
+        https://*.gstatic.com https://www.google-analytics.com; media-src ''self''
+        blob: https://*.sumsub.com https://*.stripe.com https://js.intercomcdn.com
+        https://js.intercomdcn.eu; connect-src ''self'' wss://staging.zazu.ma https://api.sumsub.com
+        https://*.sumsub.com https://api.charimoney.com https://api.eu.intercom.io
+        https://api-iam.eu.intercom.io https://api-ping.intercom.io https://nexus-europe-websocket.intercom.io
+        wss://nexus-europe-websocket.intercom.io https://*.intercom-messenger.com
+        wss://*.intercom-messenger.com https://uploads.intercomcdn.com https://uploads.intercomdcn.eu
+        https://uploads.intercomcdn.eu https://uploads.eu.intercomcdn.com https://uploads.intercomusercontent.com
+        https://*.intercom-attachments.eu https://keys.evervault.com https://api.evervault.com
+        https://*.stripe.com https://www.google-analytics.com https://www.googletagmanager.com
+        https://calendly.com; frame-src ''self'' https://staging.zazu.ma https://pay.staging.zazu.ma
+        https://docs.google.com https://*.sumsub.com https://intercom-sheets.com https://www.intercom-reporting.com
+        https://www.youtube.com https://player.vimeo.com https://www.tella.tv https://ui-components.evervault.com
+        https://*.evervault.com https://js.stripe.com https://hooks.stripe.com https://calendly.com
+        https://pay.chari.com; frame-ancestors ''self'' https://staging.zazu.ma https://pay.staging.zazu.ma;
+        object-src ''none''; base-uri ''self''; form-action ''self'' https://calendly.com;
+        worker-src ''self'' blob:; child-src ''self'' blob: https://intercom-sheets.com
+        https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
+        manifest-src ''self''; report-uri /csp-violation-reports'
+      Etag:
+      - W/"a3982672bd08901c0bbe39e1338ef723"
+      Referrer-Policy:
+      - same-origin
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Request-Id:
+      - "<REQUEST_ID>"
+      X-Runtime:
+      - '0.092447'
+      X-Xss-Protection:
+      - 1; mode=block
+      Zazu-Version:
+      - "<ZAZU_VERSION>"
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=86400, enforce
+      Report-To:
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=acQ3HncQJzofX26BJe5a5m62w5an9U5%2Fr97JmlPltsQxfpn65ePqdZMdCp0vJBkEgyogIXyigPz02nV7hA3B64qyw5HBmcTHebvPanUWGHdyemjnAQJ7N9R%2F25Axe4eKZQ%3D%3D"}]}'
+      Nel:
+      - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 9f666bf39c458ffb-FRA
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJpZCI6IjAxOWRmMjQ4LTYxMmMtNzRhNi1hOGUyLWFkNDA5YjRlYmIxYiIsInNsdWciOiIxZ041R0NrNnpXTE4iLCJsaW5rX3R5cGUiOiJzaW5nbGUiLCJjdXJyZW5jeV9jb2RlIjoiTUFEIiwidGl0bGUiOiJaYXp1IEZpeHR1cmUg4oCUIHByaW1hcnkiLCJkZXNjcmlwdGlvbiI6Ilt6YXp1LXJ1YnktZml4dHVyZV0gcHJpbWFyeSIsInBheW1lbnRfcmVmZXJlbmNlIjoiZml4dHVyZS1wcmltYXJ5LWExYTBiN2I2IiwicGF5bWVudHNfY291bnQiOjAsIm1heF9wYXltZW50cyI6bnVsbCwicmVkaXJlY3RfdXJsIjpudWxsLCJpbnZvaWNlX2lkIjpudWxsLCJzdGF0dXMiOiJhY3RpdmUiLCJhbW91bnQiOiIxMDAuMCIsInVybCI6Imh0dHBzOi8vcGF5LnN0YWdpbmcuemF6dS5tYS9wYXltZW50LWxpbmsvMWdONUdDazZ6V0xOIiwiZXhwaXJlc19hdCI6bnVsbCwicGFpZF9hdCI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjYtMDUtMDRUMTA6MTg6NDMrMDE6MDAiLCJ1cGRhdGVkX2F0IjoiMjAyNi0wNS0wNFQxMDoxODo0MyswMTowMCIsImFjY291bnQiOnsiaWQiOiIwMTlhOTVjOC01ZDhhLTc4NjQtYjJjNS0zNTQyMWQ4ZGM4ZjIiLCJuYW1lIjoiQ3VycmVudCBBY2NvdW50IiwiY3VycmVuY3lfY29kZSI6Ik1BRCIsInJpYiI6IjgyNzY0MDAwMDY3MDAwMDAwMDAyMTg4NCJ9fQ==
+  recorded_at: Mon, 04 May 2026 09:19:04 GMT
+recorded_with: VCR 6.4.0
