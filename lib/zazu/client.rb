@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'faraday/retry'
-require 'httpx/adapters/faraday'
-require 'json'
-require 'securerandom'
+require "faraday"
+require "faraday/retry"
+require "httpx/adapters/faraday"
+require "json"
+require "securerandom"
 
 module Zazu
   # The main SDK entry point.
@@ -18,23 +18,23 @@ module Zazu
   # uses a connection pool via the HTTPX adapter — multiple threads
   # can share one client.
   class Client
-    DEFAULT_BASE_URL = 'https://zazu.ma'
+    DEFAULT_BASE_URL = "https://zazu.ma"
     DEFAULT_TIMEOUT = 30
     USER_AGENT = "zazu-ruby/#{VERSION}".freeze
 
     attr_reader :api_key, :base_url, :api_version, :timeout, :logger
 
     def initialize(
-      api_key: ENV.fetch('ZAZU_API_KEY', nil),
-      base_url: ENV.fetch('ZAZU_BASE_URL', DEFAULT_BASE_URL),
-      api_version: ENV.fetch('ZAZU_API_VERSION', nil),
-      timeout: Integer(ENV.fetch('ZAZU_TIMEOUT', DEFAULT_TIMEOUT)),
+      api_key: ENV.fetch("ZAZU_API_KEY", nil),
+      base_url: ENV.fetch("ZAZU_BASE_URL", DEFAULT_BASE_URL),
+      api_version: ENV.fetch("ZAZU_API_VERSION", nil),
+      timeout: Integer(ENV.fetch("ZAZU_TIMEOUT", DEFAULT_TIMEOUT)),
       logger: nil
     )
-      raise ConfigurationError, 'Missing api_key. Pass api_key: or set ZAZU_API_KEY.' if api_key.to_s.empty?
+      raise ConfigurationError, "Missing api_key. Pass api_key: or set ZAZU_API_KEY." if api_key.to_s.empty?
 
       @api_key = api_key
-      @base_url = base_url.to_s.chomp('/')
+      @base_url = base_url.to_s.chomp("/")
       @api_version = api_version
       @timeout = timeout
       @logger = logger
@@ -90,33 +90,44 @@ module Zazu
 
     def connection
       @connection ||= Faraday.new(url: base_url) do |f|
-        f.headers['Authorization'] = "Bearer #{api_key}"
-        f.headers['User-Agent'] = USER_AGENT
-        f.headers['Accept'] = 'application/json'
-        f.headers['Zazu-Version'] = api_version if api_version
+        f.headers["Authorization"] = "Bearer #{api_key}"
+        f.headers["User-Agent"] = USER_AGENT
+        f.headers["Accept"] = "application/json"
+        f.headers["Zazu-Version"] = api_version if api_version
         f.request :json
         f.response :json, content_type: /\bjson$/
         f.options.timeout = timeout
         f.options.open_timeout = [timeout, 10].min
         f.response :logger, logger if logger
-        f.adapter :httpx
+        f.adapter(*adapter_args)
       end
+    end
+
+    # The HTTPX adapter ships its own WebMock plugin that wraps every
+    # connection. When VCR's WebMock library hook is also active and
+    # net-connect is allowed (recording mode), the two interceptors
+    # layer in a way that deadlocks on the first real request. For
+    # cassette recording we drop down to Net::HTTP, which has rock-
+    # solid WebMock + VCR integration. Cassettes are adapter-agnostic
+    # so replay continues to use the production HTTPX adapter.
+    def adapter_args
+      ENV["VCR_RECORD"] ? [:net_http] : [:httpx]
     end
 
     # Lookup table for status → (error class, default message). 5xx
     # is matched separately because Range keys don't work in Hash
     # lookup the way exact integers do.
     ERROR_BY_STATUS = {
-      401 => [AuthenticationError, 'Authentication failed'],
-      403 => [ForbiddenError, 'Forbidden'],
-      404 => [NotFoundError, 'Not found'],
-      422 => [ValidationError, 'Validation failed']
+      401 => [AuthenticationError, "Authentication failed"],
+      403 => [ForbiddenError, "Forbidden"],
+      404 => [NotFoundError, "Not found"],
+      422 => [ValidationError, "Validation failed"]
     }.freeze
     private_constant :ERROR_BY_STATUS
 
     def build_error(response)
       payload = error_payload(response.body)
-      message = payload['message']
+      message = payload["message"]
       kwargs = error_kwargs(response, payload)
 
       if (mapping = ERROR_BY_STATUS[response.status])
@@ -128,17 +139,17 @@ module Zazu
     end
 
     def error_payload(body)
-      return {} unless body.is_a?(Hash) && body['error'].is_a?(Hash)
+      return {} unless body.is_a?(Hash) && body["error"].is_a?(Hash)
 
-      body['error']
+      body["error"]
     end
 
     def error_kwargs(response, payload)
       {
         status: response.status,
         request_id: response.request_id,
-        type: payload['type'],
-        param: payload['param'],
+        type: payload["type"],
+        param: payload["param"],
         body: response.body
       }
     end
@@ -146,8 +157,8 @@ module Zazu
     def build_special_error(response, message, kwargs)
       case response.status
       when 429
-        retry_after = response.headers['retry-after']&.to_i
-        RateLimitError.new(message || 'Rate limited', retry_after: retry_after, **kwargs)
+        retry_after = response.headers["retry-after"]&.to_i
+        RateLimitError.new(message || "Rate limited", retry_after: retry_after, **kwargs)
       when 500..599
         ServerError.new(message || "Server error (#{response.status})", **kwargs)
       else

@@ -73,7 +73,7 @@ module Zazu
 
         unless max_items.is_a?(Integer) && max_items.positive?
           raise ArgumentError,
-                'max_items must be a positive integer'
+                "max_items must be a positive integer"
         end
 
         seen = 0
@@ -99,9 +99,7 @@ module Zazu
       def validate_limit!(limit)
         return MAX_PER_PAGE if limit.nil?
 
-        unless limit.is_a?(Integer) && limit.positive?
-          raise Zazu::ArgumentError, "limit must be a positive integer (got #{limit.inspect})"
-        end
+        raise Zazu::ArgumentError, "limit must be a positive integer (got #{limit.inspect})" unless limit.is_a?(Integer) && limit.positive?
 
         raise Zazu::ArgumentError, "limit cannot exceed #{MAX_PER_PAGE} (got #{limit})" if limit > MAX_PER_PAGE
 
@@ -120,12 +118,18 @@ module Zazu
       #     # => "api/accounts/acc%201/transactions/tx%201"
       def encode_path(base, *segments)
         encoded_segments = segments.map do |s|
+          str = s.to_s
+          # An empty segment would silently turn `/things/:id` into
+          # `/things/`, which on most APIs redispatches to the list
+          # endpoint and returns a Page-shaped body. Surface it loudly.
+          raise Zazu::ArgumentError, "path segment cannot be blank" if str.empty?
+
           # CGI.escape replaces ' ' with '+', which is wrong for path
           # segments. Use a manual escape that targets only characters
           # that would change path semantics.
-          s.to_s.gsub(/[^A-Za-z0-9._~-]/) { |c| format('%%%02X', c.ord) }
+          str.gsub(/[^A-Za-z0-9._~-]/) { |c| format("%%%02X", c.ord) }
         end
-        ([base] + encoded_segments).join('/')
+        ([base] + encoded_segments).join("/")
       end
     end
   end
