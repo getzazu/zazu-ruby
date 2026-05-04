@@ -163,13 +163,15 @@ jobs:
         run: |
           GEM_NAME="${{ needs.build.outputs.gem_name }}"
           TARBALL="${{ needs.build.outputs.cassettes_tarball }}"
-          # Strip the pkg/ prefix from the tarball name once downloaded.
-          TARBALL_BASENAME=$(basename "$TARBALL")
+          # actions/download-artifact@v4 preserves the directory layout
+          # used at upload time. The gem files were uploaded without a
+          # prefix, so they land at ./; the tarball was uploaded with
+          # path: pkg/cassettes-*.tar.gz, so it lands at ./pkg/.
           gh release upload "${{ github.event.release.tag_name }}" \
             "$GEM_NAME" \
             "$GEM_NAME.sha256" \
             "$GEM_NAME.sha512" \
             "$GEM_NAME.sigstore.json" \
-            "$TARBALL_BASENAME" \
-            "$TARBALL_BASENAME.sha256" \
+            "$TARBALL" \
+            "$TARBALL.sha256" \
             --repo "${{ github.repository }}"
