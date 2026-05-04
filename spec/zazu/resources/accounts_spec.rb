@@ -29,7 +29,7 @@ RSpec.describe Zazu::Resources::Accounts do
 
   describe "#get", vcr: { cassette_name: "accounts/get" } do
     it "returns a single account" do
-      response = client.accounts.get(ENV.fetch("ZAZU_FIXTURE_ACCOUNT_ID", "fixture-account-id"))
+      response = client.accounts.get(fixture_id("ZAZU_FIXTURE_ACCOUNT_ID"))
       expect(response).to be_a(Zazu::Response)
       expect(response.body["id"]).to be_a(String)
     end
@@ -37,7 +37,7 @@ RSpec.describe Zazu::Resources::Accounts do
 
   describe "#list_transactions", vcr: { cassette_name: "accounts/list_transactions" } do
     it "returns a Page of transactions" do
-      account_id = ENV.fetch("ZAZU_FIXTURE_ACCOUNT_ID", "fixture-account-id")
+      account_id = fixture_id("ZAZU_FIXTURE_ACCOUNT_ID")
       page = client.accounts.list_transactions(account_id)
       expect(page).to be_a(Zazu::Page)
       expect(page.data).to be_an(Array)
@@ -46,8 +46,8 @@ RSpec.describe Zazu::Resources::Accounts do
 
   describe "#get_transaction", vcr: { cassette_name: "accounts/get_transaction" } do
     it "returns a single transaction" do
-      account_id = ENV.fetch("ZAZU_FIXTURE_ACCOUNT_ID", "fixture-account-id")
-      transaction_id = ENV.fetch("ZAZU_FIXTURE_TRANSACTION_ID", "fixture-transaction-id")
+      account_id = fixture_id("ZAZU_FIXTURE_ACCOUNT_ID")
+      transaction_id = fixture_id("ZAZU_FIXTURE_TRANSACTION_ID")
       response = client.accounts.get_transaction(account_id, transaction_id)
       expect(response.body["id"]).to be_a(String)
     end

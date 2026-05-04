@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://staging.zazu.ma/api/accounts/019a95c8-5d8a-7864-b2c5-35421d8dc8f2/transactions/019dd934-f9e4-72d4-adab-f7727a069863
+    uri: https://staging.zazu.ma/api/accounts/fixture-account-id/transactions/fixture-transaction-id
     body:
       encoding: US-ASCII
       string: ''
@@ -10,7 +10,7 @@ http_interactions:
       Authorization:
       - Bearer <ZAZU_API_KEY>
       User-Agent:
-      - zazu-ruby/0.1.0
+      - zazu-ruby/0.1.1
       Accept:
       - application/json
       Accept-Encoding:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 04 May 2026 09:18:53 GMT
+      - Mon, 04 May 2026 16:29:21 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-uxPHQZpkTXrfKnIMo9dilA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-fXRkW7k5YiTiFC0fsIK8uQ==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -65,7 +65,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"922080bf847dd0adbf6a8efd51cf5ab3"
+      - W/"67586b70418de5f1353e2c69fdec7d32"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.119510'
+      - '0.160031'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,17 +89,17 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=sk%2BMnCW65mJmZTri%2Bq8q7IYt8e1NeHLDZOAOb2UaS%2FE3VPNH1YnAb8fC1H20xwKa2TXjpB7fA8MJE4dJye%2FpTGVlNubcHC4QtWcoLPC%2BePP7GlGfQfEFI3Tb2z2rl240Xg%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=GFZ31os4Czvzo4UCEUWU7B2j1714MTBfxcF27XddEpNVq6dgaghrC9%2BKFjEN9k9rwSU%2BHrgt3KisqmxKuAP%2FTcXr%2FnUOMdXISCUOuF1lyDe4acOxz7cz7wXFyr%2F4POL%2BGQ%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f666baec824bb8b-FRA
+      - 9f68e23d4fc6ef43-CDG
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"019dd934-f9e4-72d4-adab-f7727a069863","account_id":"019a95c8-5d8a-7864-b2c5-35421d8dc8f2","operation":"credit","currency_code":"MAD","internal_transfer":false,"other_name":"+212662801336","external_id":"11524","provider_name":"chari_money","transfer_id":"019dd934-f969-7cf5-8772-e14a57586bb3","card_payment_id":null,"card_topup_id":null,"posting_id":"019dd934-f9d0-7ac5-a53e-75956710e392","amount":"15.0","account_balance_after":"9057.83","source_type":"transfer","source_id":"019dd934-f969-7cf5-8772-e14a57586bb3","transaction_type":"External
-        Transfer","reference":"Invoice payment #4","label":"Virement entrant - +212662801336","posted_at":"2026-04-29T13:20:50+01:00","value_date":"2026-04-29","created_at":"2026-04-29T13:27:00+01:00","updated_at":"2026-04-29T13:27:01+01:00","account":{"id":"019a95c8-5d8a-7864-b2c5-35421d8dc8f2","name":"Current
+      string: '{"id":"fixture-transaction-id","account_id":"fixture-account-id","operation":"credit","currency_code":"MAD","internal_transfer":false,"other_name":"yaro","external_id":"11615","provider_name":"chari_money","transfer_id":null,"card_payment_id":null,"card_topup_id":"019df2b2-981c-7287-9a77-903aca2a68df","posting_id":"019df2b2-b12b-741f-aa63-cb647960f18d","amount":"980.0","account_balance_after":"12603.87","source_type":"card_topup","source_id":"019df2b2-981c-7287-9a77-903aca2a68df","transaction_type":"Card
+        Top-up","reference":"","label":"Rechargement par carte - yaro","posted_at":"2026-05-04T12:14:49+01:00","value_date":"2026-05-04","created_at":"2026-05-04T12:14:50+01:00","updated_at":"2026-05-04T12:18:05+01:00","account":{"id":"fixture-account-id","name":"Current
         Account","currency_code":"MAD","rib":"827640000670000000021884"}}'
-  recorded_at: Mon, 04 May 2026 09:18:53 GMT
+  recorded_at: Mon, 04 May 2026 16:29:20 GMT
 recorded_with: VCR 6.4.0

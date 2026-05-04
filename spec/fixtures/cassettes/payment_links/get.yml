@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://staging.zazu.ma/api/payment_links/019df248-612c-74a6-a8e2-ad409b4ebb1b
+    uri: https://staging.zazu.ma/api/payment_links/fixture-payment-link-id
     body:
       encoding: US-ASCII
       string: ''
@@ -10,7 +10,7 @@ http_interactions:
       Authorization:
       - Bearer <ZAZU_API_KEY>
       User-Agent:
-      - zazu-ruby/0.1.0
+      - zazu-ruby/0.1.1
       Accept:
       - application/json
       Accept-Encoding:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 04 May 2026 09:19:04 GMT
+      - Mon, 04 May 2026 16:29:29 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-t4WGDLnDn4JYnFX0ko3yLg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-aCXtnmlH2BX4zlNEMhouyw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -65,7 +65,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"a3982672bd08901c0bbe39e1338ef723"
+      - W/"5ab8aa637eb9a0b3f4b6615f388aec79"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.092447'
+      - '0.107835'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,16 +89,16 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=acQ3HncQJzofX26BJe5a5m62w5an9U5%2Fr97JmlPltsQxfpn65ePqdZMdCp0vJBkEgyogIXyigPz02nV7hA3B64qyw5HBmcTHebvPanUWGHdyemjnAQJ7N9R%2F25Axe4eKZQ%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=At0GU4%2Bz03g4RqKijV8xCOtYhBz1sNDnBT3wwZ8Org3IBr9XH5F%2FCM3evgKxSYkI2hlbNt%2BkGg%2FR5ohr0VatBtsW%2Bi%2F9GUm4z0DEgMPgASVRAUkO7skiWiA9EJtGfO9i7w%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f666bf39c458ffb-FRA
+      - 9f68e27458779ea9-CDG
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJpZCI6IjAxOWRmMjQ4LTYxMmMtNzRhNi1hOGUyLWFkNDA5YjRlYmIxYiIsInNsdWciOiIxZ041R0NrNnpXTE4iLCJsaW5rX3R5cGUiOiJzaW5nbGUiLCJjdXJyZW5jeV9jb2RlIjoiTUFEIiwidGl0bGUiOiJaYXp1IEZpeHR1cmUg4oCUIHByaW1hcnkiLCJkZXNjcmlwdGlvbiI6Ilt6YXp1LXJ1YnktZml4dHVyZV0gcHJpbWFyeSIsInBheW1lbnRfcmVmZXJlbmNlIjoiZml4dHVyZS1wcmltYXJ5LWExYTBiN2I2IiwicGF5bWVudHNfY291bnQiOjAsIm1heF9wYXltZW50cyI6bnVsbCwicmVkaXJlY3RfdXJsIjpudWxsLCJpbnZvaWNlX2lkIjpudWxsLCJzdGF0dXMiOiJhY3RpdmUiLCJhbW91bnQiOiIxMDAuMCIsInVybCI6Imh0dHBzOi8vcGF5LnN0YWdpbmcuemF6dS5tYS9wYXltZW50LWxpbmsvMWdONUdDazZ6V0xOIiwiZXhwaXJlc19hdCI6bnVsbCwicGFpZF9hdCI6bnVsbCwiY3JlYXRlZF9hdCI6IjIwMjYtMDUtMDRUMTA6MTg6NDMrMDE6MDAiLCJ1cGRhdGVkX2F0IjoiMjAyNi0wNS0wNFQxMDoxODo0MyswMTowMCIsImFjY291bnQiOnsiaWQiOiIwMTlhOTVjOC01ZDhhLTc4NjQtYjJjNS0zNTQyMWQ4ZGM4ZjIiLCJuYW1lIjoiQ3VycmVudCBBY2NvdW50IiwiY3VycmVuY3lfY29kZSI6Ik1BRCIsInJpYiI6IjgyNzY0MDAwMDY3MDAwMDAwMDAyMTg4NCJ9fQ==
-  recorded_at: Mon, 04 May 2026 09:19:04 GMT
+        eyJpZCI6ImZpeHR1cmUtcGF5bWVudC1saW5rLWlkIiwic2x1ZyI6IkFvMVJwM2R6TGg1cSIsImxpbmtfdHlwZSI6InNpbmdsZSIsImN1cnJlbmN5X2NvZGUiOiJNQUQiLCJ0aXRsZSI6IlphenUgRml4dHVyZSDigJQgcHJpbWFyeSIsImRlc2NyaXB0aW9uIjoiW3phenUtcnVieS1maXh0dXJlXSBwcmltYXJ5IiwicGF5bWVudF9yZWZlcmVuY2UiOiJmaXh0dXJlLXByaW1hcnktYWM3MmY5OTUiLCJwYXltZW50c19jb3VudCI6MCwibWF4X3BheW1lbnRzIjpudWxsLCJyZWRpcmVjdF91cmwiOm51bGwsImludm9pY2VfaWQiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsImFtb3VudCI6IjEwMC4wIiwidXJsIjoiaHR0cHM6Ly9wYXkuc3RhZ2luZy56YXp1Lm1hL3BheW1lbnQtbGluay9BbzFScDNkekxoNXEiLCJleHBpcmVzX2F0IjpudWxsLCJwYWlkX2F0IjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNi0wNS0wNFQxNzoyOToxNSswMTowMCIsInVwZGF0ZWRfYXQiOiIyMDI2LTA1LTA0VDE3OjI5OjE1KzAxOjAwIiwiYWNjb3VudCI6eyJpZCI6ImZpeHR1cmUtYWNjb3VudC1pZCIsIm5hbWUiOiJDdXJyZW50IEFjY291bnQiLCJjdXJyZW5jeV9jb2RlIjoiTUFEIiwicmliIjoiODI3NjQwMDAwNjcwMDAwMDAwMDIxODg0In19
+  recorded_at: Mon, 04 May 2026 16:29:29 GMT
 recorded_with: VCR 6.4.0

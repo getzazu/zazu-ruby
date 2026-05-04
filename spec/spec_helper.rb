@@ -11,6 +11,7 @@ require "httpx"
 require "httpx/adapters/webmock"
 require "zazu"
 
+require_relative "support/fixture_ids"
 require_relative "support/vcr"
 require_relative "support/client_helpers"
 
@@ -21,4 +22,5 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
   config.include ClientHelpers
+  config.include Zazu::SpecFixtures
 end

@@ -14,7 +14,7 @@ RSpec.describe Zazu::Resources::Invoices do
 
   describe "#get", vcr: { cassette_name: "invoices/get" } do
     it "returns a single invoice" do
-      response = client.invoices.get(ENV.fetch("ZAZU_FIXTURE_INVOICE_ID", "fixture-invoice-id"))
+      response = client.invoices.get(fixture_id("ZAZU_FIXTURE_INVOICE_ID"))
       expect(response.body["id"]).to be_a(String)
     end
   end
@@ -22,7 +22,7 @@ RSpec.describe Zazu::Resources::Invoices do
   describe "#create", vcr: { cassette_name: "invoices/create" } do
     it "creates an invoice" do
       response = client.invoices.create(
-        customer_id: ENV.fetch("ZAZU_FIXTURE_CUSTOMER_ID", "fixture-customer-id"),
+        customer_id: fixture_id("ZAZU_FIXTURE_CUSTOMER_ID"),
         currency_code: "MAD",
         issue_date: "2026-05-03",
         due_date: "2026-06-03",
@@ -37,7 +37,7 @@ RSpec.describe Zazu::Resources::Invoices do
   describe "#update", vcr: { cassette_name: "invoices/update" } do
     it "updates an invoice" do
       response = client.invoices.update(
-        ENV.fetch("ZAZU_FIXTURE_INVOICE_ID", "fixture-invoice-id"),
+        fixture_id("ZAZU_FIXTURE_INVOICE_ID"),
         notes: "updated by SDK fixture spec"
       )
       expect(response.status).to eq(200)
@@ -68,7 +68,7 @@ RSpec.describe Zazu::Resources::Invoices do
 
   describe "#delete", vcr: { cassette_name: "invoices/delete" } do
     it "deletes an invoice" do
-      response = client.invoices.delete(ENV.fetch("ZAZU_FIXTURE_DELETABLE_INVOICE_ID", "fixture-invoice-id"))
+      response = client.invoices.delete(fixture_id("ZAZU_FIXTURE_DELETABLE_INVOICE_ID"))
       expect(response.status).to eq(204)
     end
   end

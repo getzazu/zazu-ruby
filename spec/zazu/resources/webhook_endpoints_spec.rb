@@ -15,7 +15,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#get", vcr: { cassette_name: "webhook_endpoints/get" } do
     it "returns a single webhook endpoint" do
       response = client.webhook_endpoints.get(
-        ENV.fetch("ZAZU_FIXTURE_WEBHOOK_ID", "fixture-webhook-id")
+        fixture_id("ZAZU_FIXTURE_WEBHOOK_ID")
       )
       expect(response.body["id"]).to be_a(String)
     end
@@ -35,7 +35,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#update", vcr: { cassette_name: "webhook_endpoints/update" } do
     it "updates a webhook endpoint" do
       response = client.webhook_endpoints.update(
-        ENV.fetch("ZAZU_FIXTURE_WEBHOOK_ID", "fixture-webhook-id"),
+        fixture_id("ZAZU_FIXTURE_WEBHOOK_ID"),
         description: "Updated description",
         events: ["payment_link.paid"]
       )
@@ -46,7 +46,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#delete", vcr: { cassette_name: "webhook_endpoints/delete" } do
     it "deletes a webhook endpoint" do
       response = client.webhook_endpoints.delete(
-        ENV.fetch("ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID", "fixture-webhook-id")
+        fixture_id("ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID")
       )
       expect(response.status).to eq(204)
     end
@@ -55,7 +55,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#test_endpoint", vcr: { cassette_name: "webhook_endpoints/test" } do
     it "fires a test event" do
       response = client.webhook_endpoints.test_endpoint(
-        ENV.fetch("ZAZU_FIXTURE_WEBHOOK_ID", "fixture-webhook-id")
+        fixture_id("ZAZU_FIXTURE_WEBHOOK_ID")
       )
       expect(response.success?).to be true
     end
@@ -64,7 +64,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#regenerate_secret", vcr: { cassette_name: "webhook_endpoints/regenerate_secret" } do
     it "rotates the webhook secret" do
       response = client.webhook_endpoints.regenerate_secret(
-        ENV.fetch("ZAZU_FIXTURE_WEBHOOK_ID", "fixture-webhook-id")
+        fixture_id("ZAZU_FIXTURE_WEBHOOK_ID")
       )
       expect(response.success?).to be true
     end
@@ -73,7 +73,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#enable", vcr: { cassette_name: "webhook_endpoints/enable" } do
     it "enables an endpoint" do
       response = client.webhook_endpoints.enable(
-        ENV.fetch("ZAZU_FIXTURE_DISABLED_WEBHOOK_ID", "fixture-webhook-id")
+        fixture_id("ZAZU_FIXTURE_DISABLED_WEBHOOK_ID")
       )
       expect(response.success?).to be true
     end
@@ -82,7 +82,7 @@ RSpec.describe Zazu::Resources::WebhookEndpoints do
   describe "#disable", vcr: { cassette_name: "webhook_endpoints/disable" } do
     it "disables an endpoint" do
       response = client.webhook_endpoints.disable(
-        ENV.fetch("ZAZU_FIXTURE_ENABLED_WEBHOOK_ID", "fixture-webhook-id")
+        fixture_id("ZAZU_FIXTURE_ENABLED_WEBHOOK_ID")
       )
       expect(response.success?).to be true
     end

@@ -21,7 +21,7 @@ RSpec.describe Zazu::Resources::Customers do
 
   describe "#get", vcr: { cassette_name: "customers/get" } do
     it "returns a single customer" do
-      response = client.customers.get(ENV.fetch("ZAZU_FIXTURE_CUSTOMER_ID", "fixture-customer-id"))
+      response = client.customers.get(fixture_id("ZAZU_FIXTURE_CUSTOMER_ID"))
       expect(response.body["id"]).to be_a(String)
     end
   end
@@ -42,7 +42,7 @@ RSpec.describe Zazu::Resources::Customers do
   describe "#update", vcr: { cassette_name: "customers/update" } do
     it "updates a customer" do
       response = client.customers.update(
-        ENV.fetch("ZAZU_FIXTURE_CUSTOMER_ID", "fixture-customer-id"),
+        fixture_id("ZAZU_FIXTURE_CUSTOMER_ID"),
         email: "updated@example.com"
       )
       expect(response.status).to eq(200)
@@ -51,7 +51,7 @@ RSpec.describe Zazu::Resources::Customers do
 
   describe "#delete", vcr: { cassette_name: "customers/delete" } do
     it "deletes a customer" do
-      response = client.customers.delete(ENV.fetch("ZAZU_FIXTURE_DELETABLE_CUSTOMER_ID", "fixture-customer-id"))
+      response = client.customers.delete(fixture_id("ZAZU_FIXTURE_DELETABLE_CUSTOMER_ID"))
       expect(response.status).to eq(204)
     end
   end

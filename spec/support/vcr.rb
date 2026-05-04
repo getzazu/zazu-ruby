@@ -53,4 +53,15 @@ VCR.configure do |config|
   config.filter_sensitive_data("<ZAZU_VERSION>") do |interaction|
     interaction.response.headers["Zazu-Version"]&.first
   end
+
+  # Scrub fixture IDs out of URLs and bodies so cassettes replay
+  # deterministically on machines without an .env (CI, contributors).
+  # The placeholder must match the spec's `ENV.fetch` fallback exactly
+  # — see spec/support/fixture_ids.rb for the canonical table.
+  Zazu::SpecFixtures::IDS.each do |env_var, placeholder|
+    real = ENV.fetch(env_var, nil)
+    next if real.nil? || real.empty?
+
+    config.filter_sensitive_data(placeholder) { real }
+  end
 end
