@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.name = "zazu"
   spec.version = Zazu::VERSION
   spec.authors = ["Zazu"]
-  spec.email = ["hello@zazu.ma"]
+  spec.email = ["hello@get-zazu.com"]
 
   spec.summary = "Ruby SDK for the Zazu API"
   spec.description = "Faraday-based Ruby SDK for the Zazu payment platform API. " \
