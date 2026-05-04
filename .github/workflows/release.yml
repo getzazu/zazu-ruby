@@ -61,15 +61,15 @@ jobs:
       - name: Build gem
         id: build
         run: |
-          gem build zazu.gemspec --strict
-          GEM_NAME=$(ls zazu-*.gem)
+          gem build zazu-ruby.gemspec --strict
+          GEM_NAME=$(ls zazu-ruby-*.gem)
           echo "gem_name=$GEM_NAME" >> "$GITHUB_OUTPUT"
           TAG_VERSION="${{ github.event.release.tag_name }}"
           echo "version=${TAG_VERSION#v}" >> "$GITHUB_OUTPUT"
 
       - name: Verify gem contents do not include cassettes or specs
         run: |
-          GEM_NAME=$(ls zazu-*.gem)
+          GEM_NAME=$(ls zazu-ruby-*.gem)
           gem unpack "$GEM_NAME" --target /tmp/gem-verify
 
           UNWANTED=$(find /tmp/gem-verify \( -name ".git*" -o -name "*.gemspec" -o -name "Rakefile" \) -print)
@@ -91,7 +91,7 @@ jobs:
 
       - name: Generate checksums
         run: |
-          GEM_NAME=$(ls zazu-*.gem)
+          GEM_NAME=$(ls zazu-ruby-*.gem)
           sha256sum "$GEM_NAME" > "$GEM_NAME.sha256"
           sha512sum "$GEM_NAME" > "$GEM_NAME.sha512"
           TARBALL=$(ls pkg/cassettes-*.tar.gz)
@@ -102,9 +102,9 @@ jobs:
         with:
           name: gem-and-cassettes
           path: |
-            zazu-*.gem
-            zazu-*.gem.sha256
-            zazu-*.gem.sha512
+            zazu-ruby-*.gem
+            zazu-ruby-*.gem.sha256
+            zazu-ruby-*.gem.sha512
             pkg/cassettes-*.tar.gz
             pkg/cassettes-*.tar.gz.sha256
           if-no-files-found: error
@@ -122,7 +122,7 @@ jobs:
           name: gem-and-cassettes
 
       - name: Verify checksums
-        run: sha256sum -c zazu-*.gem.sha256 && sha512sum -c zazu-*.gem.sha512
+        run: sha256sum -c zazu-ruby-*.gem.sha256 && sha512sum -c zazu-ruby-*.gem.sha512
 
       - uses: ruby/setup-ruby@v1
         with:
@@ -133,14 +133,14 @@ jobs:
 
       - name: Push to RubyGems with Sigstore attestation
         run: |
-          GEM_NAME=$(ls zazu-*.gem)
+          GEM_NAME=$(ls zazu-ruby-*.gem)
           gem exec sigstore-cli sign "$GEM_NAME" --bundle "$GEM_NAME.sigstore.json"
           gem push "$GEM_NAME" --attestation "$GEM_NAME.sigstore.json"
 
       - uses: actions/upload-artifact@v4
         with:
           name: sigstore
-          path: zazu-*.gem.sigstore.json
+          path: zazu-ruby-*.gem.sigstore.json
           if-no-files-found: error
 
   upload-release-assets:

@@ -3,7 +3,7 @@
 require_relative "lib/zazu/version"
 
 Gem::Specification.new do |spec|
-  spec.name = "zazu"
+  spec.name = "zazu-ruby"
   spec.version = Zazu::VERSION
   spec.authors = ["Zazu"]
   spec.email = ["hello@get-zazu.com"]

@@ -3,8 +3,10 @@
 Ruby SDK for the [Zazu API](https://zazu.ma). Faraday + HTTPX adapter for HTTP/2 + persistent connections.
 
 ```ruby
-gem "zazu"
+gem "zazu-ruby"
 ```
+
+The gem is published as `zazu-ruby` on RubyGems but loaded as `zazu` in code (the `zazu` name was already taken by an unrelated 2014-era gem).
 
 ## Quick start
 

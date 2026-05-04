@@ -10,8 +10,8 @@ task default: %i[spec rubocop]
 
 desc "Build gem and verify contents"
 task :build do
-  sh("gem build zazu.gemspec --strict")
-  gem_file = Dir["zazu-*.gem"].first
+  sh("gem build zazu-ruby.gemspec --strict")
+  gem_file = Dir["zazu-ruby-*.gem"].first
   abort "Gem file not found after build" unless gem_file
 
   sh("gem unpack #{gem_file} --target /tmp/gem-verify")
@@ -86,8 +86,8 @@ task :release, %i[version force] do |_t, args|
 
   # Step 2: Verify gem builds cleanly
   header "Build verification"
-  sh("gem build zazu.gemspec --strict")
-  sh("rm -f zazu-*.gem")
+  sh("gem build zazu-ruby.gemspec --strict")
+  sh("rm -f zazu-ruby-*.gem")
   success "Gem builds cleanly"
 
   # Step 3: Commit version bump
