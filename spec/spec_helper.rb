@@ -1,18 +1,21 @@
 # frozen_string_literal: true
 
-require 'bundler/setup'
-require 'dotenv/load'
-require 'vcr'
-require 'webmock/rspec'
-require 'httpx'
-require 'httpx/adapters/webmock'
-require 'zazu'
+require "bundler/setup"
+require "dotenv"
+# Use overload so ZAZU_FIXTURE_* values written by `rake fixtures:seed`
+# beat any stale exports lingering in the developer's shell.
+Dotenv.overload
+require "vcr"
+require "webmock/rspec"
+require "httpx"
+require "httpx/adapters/webmock"
+require "zazu"
 
-require_relative 'support/vcr'
-require_relative 'support/client_helpers'
+require_relative "support/vcr"
+require_relative "support/client_helpers"
 
 RSpec.configure do |config|
-  config.example_status_persistence_file_path = '.rspec_status'
+  config.example_status_persistence_file_path = ".rspec_status"
   config.disable_monkey_patching!
   config.expect_with :rspec do |c|
     c.syntax = :expect

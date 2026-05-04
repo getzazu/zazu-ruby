@@ -20,7 +20,7 @@
 # from .env, the committed cassette is scrubbed.
 
 VCR.configure do |config|
-  config.cassette_library_dir = File.expand_path('../fixtures/cassettes', __dir__)
+  config.cassette_library_dir = File.expand_path("../fixtures/cassettes", __dir__)
   config.hook_into :webmock
   config.configure_rspec_metadata!
 
@@ -30,8 +30,8 @@ VCR.configure do |config|
     serialize_with: :yaml
   }
 
-  if ENV['VCR_RECORD']
-    record_mode = ENV['VCR_RECORD'].to_sym
+  if ENV["VCR_RECORD"]
+    record_mode = ENV["VCR_RECORD"].to_sym
     config.default_cassette_options[:record] = record_mode
 
     # When recording, allow real HTTP through WebMock.
@@ -39,18 +39,18 @@ VCR.configure do |config|
   end
 
   # Scrubbers — run on every interaction before write.
-  config.filter_sensitive_data('<ZAZU_API_KEY>') do |interaction|
-    auth = interaction.request.headers['Authorization']
+  config.filter_sensitive_data("<ZAZU_API_KEY>") do |interaction|
+    auth = interaction.request.headers["Authorization"]
     next nil unless auth.is_a?(Array) && auth.first
 
-    auth.first.delete_prefix('Bearer ')
+    auth.first.delete_prefix("Bearer ")
   end
 
-  config.filter_sensitive_data('<REQUEST_ID>') do |interaction|
-    interaction.response.headers['X-Request-Id']&.first
+  config.filter_sensitive_data("<REQUEST_ID>") do |interaction|
+    interaction.response.headers["X-Request-Id"]&.first
   end
 
-  config.filter_sensitive_data('<ZAZU_VERSION>') do |interaction|
-    interaction.response.headers['Zazu-Version']&.first
+  config.filter_sensitive_data("<ZAZU_VERSION>") do |interaction|
+    interaction.response.headers["Zazu-Version"]&.first
   end
 end

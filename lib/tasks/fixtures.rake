@@ -26,17 +26,21 @@
 #                              banking-side operation), so this one
 #                              ID has to come from outside.
 
-require 'dotenv/load'
+require "dotenv"
+# Use overload so the file's values beat any stale exports in the
+# developer's shell — `rake fixtures:seed` rewrites IDs into .env on
+# every run, and a stale exported $ZAZU_FIXTURE_CUSTOMER_ID would
+# otherwise mask the freshly seeded one.
+Dotenv.overload
 
 # All seeding logic lives in the namespace below. Kept inline rather
 # than pulled into lib/zazu/* because this is purely a development
 # tool — it has no place in the gem itself.
 module Fixtures
-  # rubocop:disable Metrics/ClassLength
   class Seeder
     # Marker baked into every seeded record so teardown can find them.
-    FIXTURE_TAG = 'zazu-ruby-fixture'
-    FIXTURE_VERSION = '1' # bump when seed shape changes meaningfully
+    FIXTURE_TAG = "zazu-ruby-fixture"
+    FIXTURE_VERSION = "1" # bump when seed shape changes meaningfully
 
     REQUIRED_ENV = %w[ZAZU_STAGING_API_KEY ZAZU_STAGING_URL ZAZU_FIXTURE_ACCOUNT_ID].freeze
 
@@ -50,6 +54,7 @@ module Fixtures
     # later release once the API surfaces an approve endpoint or we
     # build a Rails-side helper that approves fixture invoices.
     EMITTED_KEYS = %w[
+      ZAZU_FIXTURE_TRANSACTION_ID
       ZAZU_FIXTURE_CUSTOMER_ID
       ZAZU_FIXTURE_DELETABLE_CUSTOMER_ID
       ZAZU_FIXTURE_INVOICE_ID
@@ -64,48 +69,51 @@ module Fixtures
 
     def initialize
       check_env!
-      $LOAD_PATH.unshift(File.expand_path('../..', __dir__))
-      require 'zazu'
+      $LOAD_PATH.unshift(File.expand_path("../..", __dir__))
+      require "zazu"
       @client = Zazu::Client.new(
-        api_key: ENV.fetch('ZAZU_STAGING_API_KEY'),
-        base_url: ENV.fetch('ZAZU_STAGING_URL')
+        api_key: ENV.fetch("ZAZU_STAGING_API_KEY"),
+        base_url: ENV.fetch("ZAZU_STAGING_URL")
       )
-      @account_id = ENV.fetch('ZAZU_FIXTURE_ACCOUNT_ID')
+      @account_id = ENV.fetch("ZAZU_FIXTURE_ACCOUNT_ID")
       @ids = {}
     end
 
     def run!
-      log 'Checking for stale fixtures…'
+      log "Checking for stale fixtures…"
       stale = find_stale_fixtures
       total_stale = stale.values.sum(&:size)
       if total_stale.positive?
-        warn '!! Existing fixture records found on staging. Run `rake fixtures:teardown` first:'
+        warn "!! Existing fixture records found on staging. Run `rake fixtures:teardown` first:"
         stale.each { |kind, items| warn "    #{kind}: #{items.size} record(s)" if items.any? }
         exit 1
       end
 
-      log 'Seeding customers…'
+      log "Discovering transaction id…"
+      discover_transaction_id!
+
+      log "Seeding customers…"
       seed_customers!
 
-      log 'Seeding invoices…'
+      log "Seeding invoices…"
       seed_invoices!
 
-      log 'Seeding payment links…'
+      log "Seeding payment links…"
       seed_payment_links!
 
-      log 'Seeding webhook endpoints…'
+      log "Seeding webhook endpoints…"
       seed_webhook_endpoints!
 
       emit_env_block
     end
 
     def teardown!
-      log 'Looking up existing fixtures to delete…'
+      log "Looking up existing fixtures to delete…"
       stale = find_stale_fixtures
       total = stale.values.sum(&:size)
 
       if total.zero?
-        log 'No fixtures to delete. Nothing to do.'
+        log "No fixtures to delete. Nothing to do."
         return
       end
 
@@ -118,17 +126,17 @@ module Fixtures
       delete_each(stale[:invoices])          { |id| try_delete_invoice(id) }
       delete_each(stale[:customers])         { |id| try_delete_customer(id) }
 
-      log 'Teardown complete.'
+      log "Teardown complete."
     end
 
     private
 
     def check_env!
-      missing = REQUIRED_ENV.select { |k| ENV.fetch(k, '').empty? }
+      missing = REQUIRED_ENV.select { |k| ENV.fetch(k, "").empty? }
       return if missing.empty?
 
-      warn "Missing required env vars: #{missing.join(', ')}"
-      warn 'Copy .env.example to .env and fill in the values.'
+      warn "Missing required env vars: #{missing.join(", ")}"
+      warn "Copy .env.example to .env and fill in the values."
       exit 1
     end
 
@@ -137,19 +145,31 @@ module Fixtures
     end
 
     def fixture_marker(suffix = nil)
-      [FIXTURE_TAG, "v#{FIXTURE_VERSION}", suffix].compact.join('-')
+      [FIXTURE_TAG, "v#{FIXTURE_VERSION}", suffix].compact.join("-")
     end
 
     # --- Seed steps ---------------------------------------------------------
 
+    # Transactions are read-only — they're created as a side effect of
+    # bank movements, not via the API. We pluck the most recent one
+    # off the fixture account so the get_transaction spec has a real
+    # ID to replay against.
+    def discover_transaction_id!
+      page = @client.accounts.list_transactions(@account_id, limit: 1)
+      first = page.data.first
+      raise "No transactions found on fixture account — cannot record get_transaction cassette" unless first
+
+      @ids["ZAZU_FIXTURE_TRANSACTION_ID"] = first["id"]
+    end
+
     def seed_customers!
-      @ids['ZAZU_FIXTURE_CUSTOMER_ID'] = create_customer!('primary').body['id']
-      @ids['ZAZU_FIXTURE_DELETABLE_CUSTOMER_ID'] = create_customer!('deletable').body['id']
+      @ids["ZAZU_FIXTURE_CUSTOMER_ID"] = create_customer!("primary").body["id"]
+      @ids["ZAZU_FIXTURE_DELETABLE_CUSTOMER_ID"] = create_customer!("deletable").body["id"]
     end
 
     def create_customer!(suffix)
       @client.customers.create(
-        customer_type: 'business',
+        customer_type: "business",
         company_name: "Zazu Fixture Co — #{suffix} (#{fixture_marker})",
         email: "fixture-#{suffix}-#{SecureRandom.hex(4)}@example.com",
         ice_number: random_ice_number
@@ -157,7 +177,7 @@ module Fixtures
     end
 
     def seed_invoices!
-      customer_id = @ids.fetch('ZAZU_FIXTURE_CUSTOMER_ID')
+      customer_id = @ids.fetch("ZAZU_FIXTURE_CUSTOMER_ID")
 
       # Two invoices in the API's default starting state
       # (`pending_approval`): one for read-only specs (list/get/
@@ -168,61 +188,61 @@ module Fixtures
       # cannot transition into. Those specs are skipped in v0.1.0.
       drafts = Array.new(2) { |i| create_draft_invoice!(customer_id, i) }
 
-      @ids['ZAZU_FIXTURE_INVOICE_ID'] = drafts[0]
-      @ids['ZAZU_FIXTURE_DELETABLE_INVOICE_ID'] = drafts[1]
+      @ids["ZAZU_FIXTURE_INVOICE_ID"] = drafts[0]
+      @ids["ZAZU_FIXTURE_DELETABLE_INVOICE_ID"] = drafts[1]
     end
 
     def create_draft_invoice!(customer_id, idx)
       response = @client.invoices.create(
         customer_id: customer_id,
-        currency_code: 'MAD',
+        currency_code: "MAD",
         issue_date: Date.today.iso8601,
         due_date: (Date.today + 30).iso8601,
         reference: fixture_marker("inv-#{idx}"),
         notes: "[#{FIXTURE_TAG}] draft #{idx}",
         items: [
-          { description: 'Zazu fixture line item', quantity: 1, unit_price: '100.00' }
+          { description: "Zazu fixture line item", quantity: 1, unit_price: "100.00" }
         ]
       )
-      response.body['id']
+      response.body["id"]
     end
 
     def seed_payment_links!
-      @ids['ZAZU_FIXTURE_PAYMENT_LINK_ID'] = create_payment_link!('primary')
-      @ids['ZAZU_FIXTURE_CANCELLABLE_PAYMENT_LINK_ID'] = create_payment_link!('cancellable')
+      @ids["ZAZU_FIXTURE_PAYMENT_LINK_ID"] = create_payment_link!("primary")
+      @ids["ZAZU_FIXTURE_CANCELLABLE_PAYMENT_LINK_ID"] = create_payment_link!("cancellable")
     end
 
     def create_payment_link!(suffix)
       response = @client.payment_links.create(
         account_id: @account_id,
-        amount: '100.00',
+        amount: "100.00",
         title: "Zazu Fixture — #{suffix}",
         description: "[#{FIXTURE_TAG}] #{suffix}",
         payment_reference: "fixture-#{suffix}-#{SecureRandom.hex(4)}",
-        link_type: 'single'
+        link_type: "single"
       )
-      response.body['id']
+      response.body["id"]
     end
 
     def seed_webhook_endpoints!
-      @ids['ZAZU_FIXTURE_WEBHOOK_ID'] = create_webhook_endpoint!('primary')
-      @ids['ZAZU_FIXTURE_ENABLED_WEBHOOK_ID'] = create_webhook_endpoint!('enabled')
+      @ids["ZAZU_FIXTURE_WEBHOOK_ID"] = create_webhook_endpoint!("primary")
+      @ids["ZAZU_FIXTURE_ENABLED_WEBHOOK_ID"] = create_webhook_endpoint!("enabled")
 
       # disabled: create then disable.
-      disabled_id = create_webhook_endpoint!('disabled')
+      disabled_id = create_webhook_endpoint!("disabled")
       @client.webhook_endpoints.disable(disabled_id)
-      @ids['ZAZU_FIXTURE_DISABLED_WEBHOOK_ID'] = disabled_id
+      @ids["ZAZU_FIXTURE_DISABLED_WEBHOOK_ID"] = disabled_id
 
-      @ids['ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID'] = create_webhook_endpoint!('deletable')
+      @ids["ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID"] = create_webhook_endpoint!("deletable")
     end
 
     def create_webhook_endpoint!(suffix)
       response = @client.webhook_endpoints.create(
         url: "https://example.com/zazu-fixture-#{suffix}-#{SecureRandom.hex(4)}",
-        events: ['payment_link.paid'],
+        events: ["payment_link.paid"],
         description: "[#{FIXTURE_TAG}] #{suffix}"
       )
-      response.body['id']
+      response.body["id"]
     end
 
     # --- Teardown steps -----------------------------------------------------
@@ -238,30 +258,35 @@ module Fixtures
     end
 
     def stale_customers
-      stale_records(@client.customers) { |c| fixture_record?(c['company_name']) }
+      stale_records(@client.customers) { |c| fixture_record?(c["company_name"]) }
     end
 
     def stale_invoices
       stale_records(@client.invoices) do |i|
-        fixture_record?(i['reference']) || fixture_record?(i.dig('customer', 'name'))
+        fixture_record?(i["reference"]) || fixture_record?(i.dig("customer", "name"))
       end
     end
 
     def stale_payment_links
       stale_records(@client.payment_links) do |pl|
-        fixture_record?(pl['title']) || fixture_record?(pl['description'])
+        # Payment links can't be hard-deleted via the API. Once
+        # cancelled, treat them as gone for the purpose of seed-time
+        # staleness — the next seed will create fresh ones.
+        next false if pl["status"] == "cancelled"
+
+        fixture_record?(pl["title"]) || fixture_record?(pl["description"])
       end
     end
 
     def stale_webhook_endpoints
       stale_records(@client.webhook_endpoints) do |w|
-        fixture_record?(w['description']) || fixture_record?(w['url'])
+        fixture_record?(w["description"]) || fixture_record?(w["url"])
       end
     end
 
     def stale_records(resource, &)
       matching = list_all(resource).select(&)
-      matching.map { |r| r['id'] }
+      matching.map { |r| r["id"] }
     end
 
     def fixture_record?(value)
@@ -290,7 +315,7 @@ module Fixtures
         yield(id)
         log "  ✓ deleted #{id}"
       rescue Zazu::Error => e
-        log "  ! failed to delete #{id}: #{e.class.name.split('::').last}: #{e.message}"
+        log "  ! failed to delete #{id}: #{e.class.name.split("::").last}: #{e.message}"
       end
     end
 
@@ -324,18 +349,52 @@ module Fixtures
     def emit_env_block
       missing = EMITTED_KEYS.reject { |k| @ids.key?(k) }
       unless missing.empty?
-        warn "::error:: Seed completed but #{missing.size} ID(s) missing: #{missing.join(', ')}"
+        warn "::error:: Seed completed but #{missing.size} ID(s) missing: #{missing.join(", ")}"
         exit 1
       end
 
       puts
-      puts '# Paste the lines below into .env (or copy from above with values intact).'
-      puts '# These IDs are stable until you run `rake fixtures:teardown`.'
+      puts "# Fixture IDs (also written to .env):"
       puts
-      EMITTED_KEYS.each do |k|
-        puts "#{k}=#{@ids.fetch(k)}"
+      EMITTED_KEYS.each { |k| puts "#{k}=#{@ids.fetch(k)}" }
+      puts
+
+      write_env_file!
+    end
+
+    # Rewrites every EMITTED_KEYS line in .env (preserving everything
+    # else — comments, ZAZU_STAGING_API_KEY, ZAZU_FIXTURE_ACCOUNT_ID,
+    # etc.). If a key is missing from .env, it gets appended. This
+    # lets `rake fixtures:record` chain teardown → seed → spec without
+    # any manual paste step in between.
+    def write_env_file!
+      env_path = File.expand_path("../../.env", __dir__)
+      unless File.exist?(env_path)
+        warn ".env not found at #{env_path} — skipping in-place update."
+        return
       end
-      puts
+
+      lines = File.readlines(env_path)
+      seen = {}
+
+      updated = lines.map do |line|
+        if (match = line.match(/\A(#{EMITTED_KEYS.join("|")})=/o))
+          key = match[1]
+          seen[key] = true
+          "#{key}=#{@ids.fetch(key)}\n"
+        else
+          line
+        end
+      end
+
+      EMITTED_KEYS.each do |k|
+        next if seen[k]
+
+        updated << "#{k}=#{@ids.fetch(k)}\n"
+      end
+
+      File.write(env_path, updated.join)
+      log "Wrote #{EMITTED_KEYS.size} fixture IDs to .env."
     end
 
     def random_ice_number
@@ -349,12 +408,12 @@ module Fixtures
 end
 
 namespace :fixtures do
-  desc 'Create fixture records on staging and print .env-paste-ready IDs'
+  desc "Create fixture records on staging and print .env-paste-ready IDs"
   task :seed do
     Fixtures::Seeder.new.run!
   end
 
-  desc 'Delete every fixture record previously created on staging by this seed'
+  desc "Delete every fixture record previously created on staging by this seed"
   task :teardown do
     Fixtures::Seeder.new.teardown!
   end
