@@ -52,6 +52,7 @@ query($owner: String!, $repo: String!, $number: Int!) {
   repository(owner: $owner, name: $repo) {
     pullRequest(number: $number) {
       reviewThreads(first: 100) {
+        pageInfo { hasNextPage endCursor }
         nodes {
           id
           isResolved
@@ -69,7 +70,9 @@ query($owner: String!, $repo: String!, $number: Int!) {
     }
   }
 }' -F owner=<owner> -F repo=<repo> -F number=<PR> \
-  --jq '.data.repository.pullRequest.reviewThreads.nodes | map(select(.isResolved == false)) | map({thread_id: .id, comment_id: .comments.nodes[0].databaseId, path, line, author: .comments.nodes[0].author.login, body: (.comments.nodes[0].body | .[:300])})'
+  --jq '.data.repository.pullRequest.reviewThreads as $rt
+        | (if $rt.pageInfo.hasNextPage then "WARNING: PR has >100 review threads; only the first page was fetched. Page through with `after: \($rt.pageInfo.endCursor)`." else empty end),
+          ($rt.nodes | map(select(.isResolved == false)) | map({thread_id: .id, comment_id: .comments.nodes[0].databaseId, path, line, author: .comments.nodes[0].author.login, body: (.comments.nodes[0].body | .[:300])}))'
 ```
 
 The `thread_id` (GraphQL node id, looks like `PRRT_…`) is what you need to mark a thread resolved later. The `comment_id` (numeric `databaseId`) is what the REST `pulls/comments/<id>/replies` endpoint expects when posting a reply.
