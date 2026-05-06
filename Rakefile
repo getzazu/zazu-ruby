@@ -32,6 +32,17 @@ task :release, %i[version force] do |_t, args|
   new_version = args[:version]
   abort "\e[31mUsage: rake release[X.Y.Z] or rake release[X.Y.Z,force]\e[0m" unless new_version
 
+  # Strict-ish semver: X.Y.Z with optional -alpha.N / -beta.N / -rc.N / -pre.N.
+  # We don't need full semver coverage — we control the inputs and only ship
+  # clean numeric versions. The regex is permissive enough for pre-release
+  # suffixes but rejects anything that would silently corrupt version.rb.
+  semver_re = /\A\d+\.\d+\.\d+(?:-(?:alpha|beta|rc|pre)(?:\.\d+)?)?\z/
+  unless new_version == "pre" || new_version.match?(semver_re)
+    abort "\e[31mInvalid version \"#{new_version}\". " \
+          "Expected X.Y.Z (optionally suffixed with -alpha.N / " \
+          "-beta.N / -rc.N / -pre.N), or the literal \"pre\".\e[0m"
+  end
+
   force = args[:force]&.to_s&.downcase == "force"
 
   dirty = `git status --porcelain`.strip
@@ -55,6 +66,19 @@ task :release, %i[version force] do |_t, args|
   info "New version:     #{new_version}"
   info "Pre-release:     #{prerelease}"
 
+  # Bail out before any repo mutation if the release already exists
+  # and we're not in force mode. Without this guard, a re-run on an
+  # already-shipped version would still rewrite version.rb, build the
+  # gem, commit, and push origin/main — landing a noise commit on
+  # main with no release dispatched.
+  if !force && system("gh release view #{tag} >/dev/null 2>&1")
+    header "Release"
+    skip "Release #{tag} already exists (use force to re-create)"
+    puts ""
+    puts "Release #{tag} was not dispatched. To re-cut, run with `force` or pick a higher version."
+    next
+  end
+
   # Step 0: Force cleanup — delete existing release and tag
   if force
     header "Force cleanup"
@@ -63,6 +87,20 @@ task :release, %i[version force] do |_t, args|
       success "Deleted release and remote tag #{tag}"
     else
       skip "No release #{tag} to delete"
+    end
+
+    # Even when no release existed, a stray remote tag may still be
+    # there (e.g. from a previous half-finished release attempt).
+    # gh release delete --cleanup-tag only runs when the release
+    # object existed, so we have to handle the orphaned-tag case
+    # ourselves — otherwise gh release create --target main below
+    # fails with "tag already exists" and the user can't recover
+    # without manual git push --delete.
+    if system("git ls-remote --exit-code origin refs/tags/#{tag} >/dev/null 2>&1")
+      sh("git push origin --delete #{tag}")
+      success "Deleted remote tag #{tag}"
+    else
+      skip "No remote tag #{tag} to delete"
     end
 
     if system("git rev-parse #{tag} >/dev/null 2>&1")
@@ -103,6 +141,17 @@ task :release, %i[version force] do |_t, args|
 
   # Step 4: Push to origin
   header "Git push"
+  # Refuse to push from anywhere other than main — release.yml triggers
+  # on pushes to main and tags off main, so a release driven from a
+  # feature branch would land tags pointing at the wrong commit.
+  branch = `git rev-parse --abbrev-ref HEAD`.strip
+  abort "\e[31mAborting: must release from main, currently on #{branch}.\e[0m" unless branch == "main"
+
+  # Refresh origin/main so the local-vs-remote comparison below is
+  # meaningful — without this fetch, an out-of-date tracking ref will
+  # either skip a needed push or trigger a redundant one.
+  sh("git fetch origin main")
+
   local_sha = `git rev-parse HEAD`.strip
   remote_sha = `git rev-parse origin/main 2>/dev/null`.strip
   if local_sha == remote_sha
@@ -115,11 +164,8 @@ task :release, %i[version force] do |_t, args|
   # Step 5: Create release
   header "Release"
   tag_exists = system("git rev-parse #{tag} >/dev/null 2>&1")
-  release_exists = system("gh release view #{tag} >/dev/null 2>&1")
 
-  if release_exists
-    skip "Release #{tag} already exists (use force to re-create)"
-  elsif tag_exists
+  if tag_exists
     info "Tag #{tag} exists, creating release from it"
     pre_flag = prerelease ? "--prerelease" : ""
     sh("gh release create #{tag} --generate-notes #{pre_flag}".strip)
