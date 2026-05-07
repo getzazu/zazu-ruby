@@ -21,7 +21,7 @@ http_interactions:
       message: No Content
     headers:
       Date:
-      - Thu, 07 May 2026 06:42:50 GMT
+      - Thu, 07 May 2026 07:25:21 GMT
       Connection:
       - keep-alive
       Cache-Control:
@@ -33,7 +33,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-rtgLRD8bS9PU9XOC9atofg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-Dpub3wxL1Z8nuKxJG1NtrA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -73,7 +73,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.124179'
+      - '0.117527'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -81,7 +81,7 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=vu4WVFuSs5SSJN4XrMwjoFapi5MVjFP1QEkfDlnOSIt13ikqvGcXdYnf41PHglnOv%2BwD8z1TCFgiw1FQO2d6aERsxTwWHD2%2BTs3PUKUJRgnHtfQqoDH3k6Knp%2BlU91LgSQ%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=oEfmA7FbXC8K2Mo5VDhBV48xTHSq70%2BzOMlhlwrl%2FRyRx7TVToCuFhDoiPPyFAzPdDE%2BlA7Akf1ncTqwXfn1Af6Kc%2BD1epf6Q2lFrkc22zuu0r5Tc2JaVDgh8LIHnmrNxQ%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Expect-Ct:
@@ -89,9 +89,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e3f37f9cd5d3c-FRA
+      - 9f7e7d812c50dcc1-FRA
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Thu, 07 May 2026 06:42:50 GMT
+  recorded_at: Thu, 07 May 2026 07:25:21 GMT
 recorded_with: VCR 6.4.0

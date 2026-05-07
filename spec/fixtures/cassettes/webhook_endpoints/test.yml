@@ -23,7 +23,7 @@ http_interactions:
       message: Accepted
     headers:
       Date:
-      - Thu, 07 May 2026 06:42:51 GMT
+      - Thu, 07 May 2026 07:25:22 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -39,7 +39,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-r1yd/EW/50ZSvQk7rm1WfQ==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-54AzlRGP5XF6FZO1FuG9VQ==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.255540'
+      - '0.267307'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,15 +89,15 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Im5KYW8TB3hLa4LSt57byJqJK%2B5fZlRZoLSoY4ltO%2BvDnU0FEq7MwPj5AELDS%2FQKPQtOGv00JYd0TPeCWpICwVNHandiLVyFQyWbdFM4iAv3Mh41uMEku3F%2Fscc1mjU00Q%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=O%2BmQtlV8RV%2BEhW5Eo1PUbRKPv1F7%2FGzbq%2FkQMe7YKSjJMQZIUCDaBMrvAMGAvIGQaXo9fBX%2BycAUa0Qd%2FmUfCgXXZ0SrpLWQ0Tk9Ki27TIOQx8SYV92rLPHmDGvN%2BviPZA%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e3f3c8e639bf7-FRA
+      - 9f7e7d855b2a145d-FRA
     body:
       encoding: UTF-8
-      string: '{"delivery_id":"019e012c-c22d-74f6-bdc0-6a4c00b72adb","status":"queued"}'
-  recorded_at: Thu, 07 May 2026 06:42:50 GMT
+      string: '{"delivery_id":"019e0153-afb3-7340-a914-1c576e974bc2","status":"queued"}'
+  recorded_at: Thu, 07 May 2026 07:25:22 GMT
 recorded_with: VCR 6.4.0

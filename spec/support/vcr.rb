@@ -19,7 +19,9 @@
 #   - List endpoints: non-fixture entries dropped from the response
 #     so we don't ship real customer PII / live webhook URLs from the
 #     staging entity into a public repo.
-#   - Webhook signing_secret → "<WEBHOOK_SIGNING_SECRET>"
+#   - Sensitive response fields by name (recursive, any nesting depth):
+#       signing_secret → "<WEBHOOK_SIGNING_SECRET>"
+#       rib            → "<RIB>"
 # Even if a developer pastes a real key into a test or pulls one
 # from .env, the committed cassette is scrubbed.
 
@@ -64,28 +66,37 @@ def scrub_response_body!(interaction)
     end
   end
 
-  changed = true if scrub_signing_secret!(parsed)
+  changed = true if scrub_sensitive_fields!(parsed)
 
   interaction.response.body = JSON.generate(parsed) if changed
 end
 
-# Recursively replace any `signing_secret` value with a placeholder.
+# Field name → placeholder. Add a new entry here whenever the API
+# starts returning a value we don't want committed to a public repo.
+# Matched by exact JSON key at any nesting depth.
+SENSITIVE_FIELD_PLACEHOLDERS = {
+  "signing_secret" => "<WEBHOOK_SIGNING_SECRET>",
+  "rib" => "<RIB>" # Moroccan bank account / routing identifier
+}.freeze
+
+# Recursively replace sensitive field values with placeholders.
 # Returns true if anything was changed.
-def scrub_signing_secret!(value)
+def scrub_sensitive_fields!(value)
   case value
   when Hash
     changed = false
     value.each do |k, v|
-      if k == "signing_secret" && v.is_a?(String) && v != "<WEBHOOK_SIGNING_SECRET>"
-        value[k] = "<WEBHOOK_SIGNING_SECRET>"
+      placeholder = SENSITIVE_FIELD_PLACEHOLDERS[k]
+      if placeholder && v.is_a?(String) && v != placeholder
+        value[k] = placeholder
         changed = true
-      elsif scrub_signing_secret!(v)
+      elsif scrub_sensitive_fields!(v)
         changed = true
       end
     end
     changed
   when Array
-    value.any? { |v| scrub_signing_secret!(v) }
+    value.any? { |v| scrub_sensitive_fields!(v) }
   else
     false
   end

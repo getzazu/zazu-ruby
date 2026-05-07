@@ -21,7 +21,7 @@ http_interactions:
       message: No Content
     headers:
       Date:
-      - Thu, 07 May 2026 06:42:38 GMT
+      - Thu, 07 May 2026 07:25:10 GMT
       Connection:
       - keep-alive
       Cache-Control:
@@ -33,7 +33,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-e5JBVlzWqpcQ2yJqYMAbBA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-jKfbnPvYEmkaXy8fEYFMQw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -73,7 +73,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.130796'
+      - '0.134473'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -81,7 +81,7 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=jWPWeXPCYo%2BGomP26l1aZQj3lfAalrV9z%2B5%2BOwtel5Sz4%2FSrnAjqc7QhbnHk9nHF75LvycxBWFb%2FdnHy7L0W68nJ360Hbzh2XytUgropzM44KdEgYb%2FzpAf6OKjYw4ZZyw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Nys9Okb%2B5YEBjGTdWCwyTVqE1ojjUFaOHJ49NK%2FQkffYmvKZThMQ3rf5ddTstz%2BYevvezHS6xIXU0usacvKV118EajvV%2FC0aw5q%2FMh%2BXGtUqLXR6DoKHN58CEMXgk4Ov%2Bw%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Expect-Ct:
@@ -89,9 +89,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e3eec19f5d371-FRA
+      - 9f7e7d3c2b17d389-FRA
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Thu, 07 May 2026 06:42:37 GMT
+  recorded_at: Thu, 07 May 2026 07:25:10 GMT
 recorded_with: VCR 6.4.0

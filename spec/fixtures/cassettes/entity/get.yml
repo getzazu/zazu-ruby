@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 07 May 2026 06:42:39 GMT
+      - Thu, 07 May 2026 07:25:11 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-l4t6h2L5A12ne58Hny6QBQ==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-5Fhvdr4jxk41BT8J7WlfLw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.097539'
+      - '0.092839'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,15 +89,15 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=dBP6ope3%2BHMOYYkbpBF4oC33uA6zSlMsHi4fKtRM8MDZKSlXbCHnUt5RKg%2BBUVnlcSgO7BqC6L5QOlybw5jXh88vD8RtPoy2vq70kCKMkvcl1OgC8mXhtfug8v55WJVJKw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=mUKpnyKCwODy78x4%2FTjLpofWh%2BHpxhmik6d8Lwwm7i%2FCRWulj2vig0B4bw88PV%2Fp5pIiQAbG9GCjzjBbKDqpiDgXDzaEgzkoW9dZrTPAL32vC%2BAMtEupvYmbfNofiIX45Q%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e3ef13d08973e-FRA
+      - 9f7e7d40684ebb74-FRA
     body:
       encoding: ASCII-8BIT
       string: '{"id":"019a95b0-2931-76a2-8136-33ad61357535","name":"Zazu Dev Team","created_at":"2025-11-18T07:39:01+01:00"}'
-  recorded_at: Thu, 07 May 2026 06:42:38 GMT
+  recorded_at: Thu, 07 May 2026 07:25:10 GMT
 recorded_with: VCR 6.4.0

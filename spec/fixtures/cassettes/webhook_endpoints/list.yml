@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 07 May 2026 06:42:47 GMT
+      - Thu, 07 May 2026 07:25:18 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-SHEa4cA0eDfMeyI2M3dctg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-ek7JpRmBrO52rIuvslMbLg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -65,7 +65,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"7e817eb0eb9e6323687fa1f77ed41b74"
+      - W/"00538ddf55ac12ae508d734d855e0915"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.104952'
+      - '0.100992'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,19 +89,19 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=XETKZwwRZPE5L7rHqWAgZWzW7ol9U%2B2Rk7m%2BDObdhTzFEq397zopX%2F%2FQQN9Ebp6PlzPKJSu2fyy9NLegM05ZG28kAVofHf5JZUWgA8BN2D5XTEUIfSErRICPbS%2BhW4o8wA%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=PHifsVylTpYfQHwDxr%2BXDej6xY%2FjObpGl8ZBEFVbGc%2BoL7MoylewDPEsude4NvIHEAuNzaPs1OrwA9%2F3E7U0FxG8r8kHq%2BRBorWjUISj64t0dpFj9KPi44H1Q71fVTLKQQ%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e3f258b3ed242-FRA
+      - 9f7e7d707974d202-FRA
     body:
       encoding: UTF-8
-      string: '{"data":[{"id":"fixture-deletable-webhook-id","url":"https://example.com/zazu-fixture-deletable-31ea33f0","description":"[zazu-ruby-fixture]
-        deletable","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T07:42:27+01:00","updated_at":"2026-05-07T07:42:27+01:00"},{"id":"fixture-disabled-webhook-id","url":"https://example.com/zazu-fixture-disabled-ac4d0e1d","description":"[zazu-ruby-fixture]
-        disabled","events":["payment_link.paid"],"status":"disabled","consecutive_failures":0,"disabled_at":"2026-05-07T07:42:27+01:00","created_at":"2026-05-07T07:42:26+01:00","updated_at":"2026-05-07T07:42:26+01:00"},{"id":"fixture-enabled-webhook-id","url":"https://example.com/zazu-fixture-enabled-9d706a95","description":"[zazu-ruby-fixture]
-        enabled","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T07:42:26+01:00","updated_at":"2026-05-07T07:42:26+01:00"},{"id":"fixture-webhook-id","url":"https://example.com/zazu-fixture-primary-f70aefdf","description":"[zazu-ruby-fixture]
-        primary","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T07:42:26+01:00","updated_at":"2026-05-07T07:42:26+01:00"}],"has_more":false,"next_cursor":null}'
-  recorded_at: Thu, 07 May 2026 06:42:47 GMT
+      string: '{"data":[{"id":"fixture-deletable-webhook-id","url":"https://example.com/zazu-fixture-deletable-8533a06a","description":"[zazu-ruby-fixture]
+        deletable","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T08:25:00+01:00","updated_at":"2026-05-07T08:25:00+01:00"},{"id":"fixture-disabled-webhook-id","url":"https://example.com/zazu-fixture-disabled-bc3fe5f7","description":"[zazu-ruby-fixture]
+        disabled","events":["payment_link.paid"],"status":"disabled","consecutive_failures":0,"disabled_at":"2026-05-07T08:24:59+01:00","created_at":"2026-05-07T08:24:59+01:00","updated_at":"2026-05-07T08:24:59+01:00"},{"id":"fixture-enabled-webhook-id","url":"https://example.com/zazu-fixture-enabled-3445ad4a","description":"[zazu-ruby-fixture]
+        enabled","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T08:24:59+01:00","updated_at":"2026-05-07T08:24:59+01:00"},{"id":"fixture-webhook-id","url":"https://example.com/zazu-fixture-primary-a4c8674c","description":"[zazu-ruby-fixture]
+        primary","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T08:24:58+01:00","updated_at":"2026-05-07T08:24:58+01:00"}],"has_more":false,"next_cursor":null}'
+  recorded_at: Thu, 07 May 2026 07:25:18 GMT
 recorded_with: VCR 6.4.0

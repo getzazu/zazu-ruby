@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 07 May 2026 06:42:44 GMT
+      - Thu, 07 May 2026 07:25:16 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-+8WNAgeWdfwW3QVWm8HAbw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-RJ5cRnJZ6zDiJvDMQ1v/0g==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -65,7 +65,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"338ecbb720dea4ec68560884855d93d7"
+      - W/"3f0992bb95d7e86ad6c0ab589d241ee8"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.100445'
+      - '0.105245'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,16 +89,17 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=J6WMfClx5lQGmc3UvGF%2B2apNpgmOW8Mj1%2BFL9pelwMBN%2B4r1EnUjC1%2FLFI3S4LEIpdeBArB1XT3qKxLVEYkOwP%2FG2P1U%2BENADQ6MNsjnglVe6i%2BYuUYZKBP8TdGSiU9tnw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=Fp6eeYd60ddeBsyaZhgwsFa%2BxDBZcpWG3lXAisI26JJjKIjbq9wUNY0iv%2B1mXWn5Qh42ahLbZuK6jHwgb26Pp2fTk6IX7QFJsqyFy%2FJnR43GBg44aULo%2BE%2BEC2fKlAtGWQ%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e3f151eca6c21-FRA
+      - 9f7e7d61d94518d6-FRA
     body:
-      encoding: ASCII-8BIT
-      string: !binary |-
-        eyJpZCI6ImZpeHR1cmUtcGF5bWVudC1saW5rLWlkIiwic2x1ZyI6IjF6Z0tYUk5LTmExZiIsImxpbmtfdHlwZSI6InNpbmdsZSIsImN1cnJlbmN5X2NvZGUiOiJNQUQiLCJ0aXRsZSI6IlphenUgRml4dHVyZSDigJQgcHJpbWFyeSIsImRlc2NyaXB0aW9uIjoiW3phenUtcnVieS1maXh0dXJlXSBwcmltYXJ5IiwicGF5bWVudF9yZWZlcmVuY2UiOiJmaXh0dXJlLXByaW1hcnktMzdhOTNlZDAiLCJwYXltZW50c19jb3VudCI6MCwibWF4X3BheW1lbnRzIjpudWxsLCJyZWRpcmVjdF91cmwiOm51bGwsImludm9pY2VfaWQiOm51bGwsInN0YXR1cyI6ImFjdGl2ZSIsImFtb3VudCI6IjEwMC4wIiwidXJsIjoiaHR0cHM6Ly9wYXkuc3RhZ2luZy56YXp1Lm1hL3BheW1lbnQtbGluay8xemdLWFJOS05hMWYiLCJleHBpcmVzX2F0IjpudWxsLCJwYWlkX2F0IjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNi0wNS0wN1QwNzo0MjoyNCswMTowMCIsInVwZGF0ZWRfYXQiOiIyMDI2LTA1LTA3VDA3OjQyOjI0KzAxOjAwIiwiYWNjb3VudCI6eyJpZCI6ImZpeHR1cmUtYWNjb3VudC1pZCIsIm5hbWUiOiJDdXJyZW50IEFjY291bnQiLCJjdXJyZW5jeV9jb2RlIjoiTUFEIiwicmliIjoiODI3NjQwMDAwNjcwMDAwMDAwMDIxODg0In19
-  recorded_at: Thu, 07 May 2026 06:42:44 GMT
+      encoding: UTF-8
+      string: '{"id":"fixture-payment-link-id","slug":"U1ueV689kDKM","link_type":"single","currency_code":"MAD","title":"Zazu
+        Fixture — primary","description":"[zazu-ruby-fixture] primary","payment_reference":"fixture-primary-5f0a6e18","payments_count":0,"max_payments":null,"redirect_url":null,"invoice_id":null,"status":"active","amount":"100.0","url":"https://pay.staging.zazu.ma/payment-link/U1ueV689kDKM","expires_at":null,"paid_at":null,"created_at":"2026-05-07T08:24:57+01:00","updated_at":"2026-05-07T08:24:57+01:00","account":{"id":"fixture-account-id","name":"Current
+        Account","currency_code":"MAD","rib":"<RIB>"}}'
+  recorded_at: Thu, 07 May 2026 07:25:16 GMT
 recorded_with: VCR 6.4.0
