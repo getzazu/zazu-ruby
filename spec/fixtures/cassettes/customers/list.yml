@@ -10,7 +10,7 @@ http_interactions:
       Authorization:
       - Bearer <ZAZU_API_KEY>
       User-Agent:
-      - zazu-ruby/0.1.1
+      - zazu-ruby/0.1.3
       Accept:
       - application/json
       Accept-Encoding:
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 04 May 2026 16:29:21 GMT
+      - Thu, 07 May 2026 06:16:22 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-lrz/RPaWqzm7ifhct+D5pA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-G6j1ozLAnFWO+5nLj5EsHw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -65,7 +65,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"c6e35877912e6a570d0d69c72ecdc7b4"
+      - W/"5d9ecfce3dfd32cfc880ee7c518fb21c"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.138176'
+      - '0.116282'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,16 +89,16 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=R87nZOyUclS9GPMejdqZgNp1125LVd3DSfwRMMaLVDRt68OBdw1TgFQVouJvBh97sAQlpn%2FYCwxLkQ8shQxE0T9j%2BQ3Tja2zYX8ev208DVwA8hkAByUJ83V23aR8%2BH6R2g%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=t8PPA0LMsPZWqIjWvxzKS60vj1OrCQE3HFD7gg1J7nxUuUatVQXmBwlzcsTOIK9lHcJE5CM5I6ML1HJnAvYH92BzKMrVBeuZFp%2FGLjDKxYbsKybjA3lJIIrm9ddKQgsTNw%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f68e2434e5bbb66-CDG
+      - 9f7e1876edc0d3b5-FRA
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJkYXRhIjpbeyJpZCI6ImZpeHR1cmUtZGVsZXRhYmxlLWN1c3RvbWVyLWlkIiwicGVyc29uX25hbWUiOm51bGwsImNvbXBhbnlfbmFtZSI6IlphenUgRml4dHVyZSBDbyDigJQgZGVsZXRhYmxlICh6YXp1LXJ1YnktZml4dHVyZS12MSkiLCJlbWFpbCI6ImZpeHR1cmUtZGVsZXRhYmxlLTVjYzQ5ZmFmQGV4YW1wbGUuY29tIiwicGhvbmUiOm51bGwsInRheF9pZCI6bnVsbCwiaWNlX251bWJlciI6IjM2OTkxODkyMzc0MTg5MCIsImN1c3RvbWVyX3R5cGUiOiJidXNpbmVzcyIsIm5hbWUiOiJaYXp1IEZpeHR1cmUgQ28g4oCUIGRlbGV0YWJsZSAoemF6dS1ydWJ5LWZpeHR1cmUtdjEpIiwiaW52b2ljZXNfY291bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDI2LTA1LTA0VDE3OjI5OjE0KzAxOjAwIiwidXBkYXRlZF9hdCI6IjIwMjYtMDUtMDRUMTc6Mjk6MTQrMDE6MDAiLCJiaWxsaW5nX2FkZHJlc3MiOm51bGx9LHsiaWQiOiJmaXh0dXJlLWN1c3RvbWVyLWlkIiwicGVyc29uX25hbWUiOm51bGwsImNvbXBhbnlfbmFtZSI6IlphenUgRml4dHVyZSBDbyDigJQgcHJpbWFyeSAoemF6dS1ydWJ5LWZpeHR1cmUtdjEpIiwiZW1haWwiOiJmaXh0dXJlLXByaW1hcnktNTZhZTI0MjRAZXhhbXBsZS5jb20iLCJwaG9uZSI6bnVsbCwidGF4X2lkIjpudWxsLCJpY2VfbnVtYmVyIjoiNjAwODUzOTI3MjExMDg2IiwiY3VzdG9tZXJfdHlwZSI6ImJ1c2luZXNzIiwibmFtZSI6IlphenUgRml4dHVyZSBDbyDigJQgcHJpbWFyeSAoemF6dS1ydWJ5LWZpeHR1cmUtdjEpIiwiaW52b2ljZXNfY291bnQiOjIsImNyZWF0ZWRfYXQiOiIyMDI2LTA1LTA0VDE3OjI5OjE0KzAxOjAwIiwidXBkYXRlZF9hdCI6IjIwMjYtMDUtMDRUMTc6Mjk6MTQrMDE6MDAiLCJiaWxsaW5nX2FkZHJlc3MiOm51bGx9LHsiaWQiOiIwMTlkNmM0Ny0zMzVhLTc0MGQtYjJjYi0yYWUwNDIwY2Y1MGMiLCJwZXJzb25fbmFtZSI6Ikl6em91IE1pa291IiwiY29tcGFueV9uYW1lIjoiIiwiZW1haWwiOiJyaW5zZS5qYWNvYnMrbWlrb3VAZ2V0LXphenUuY29tIiwicGhvbmUiOm51bGwsInRheF9pZCI6bnVsbCwiaWNlX251bWJlciI6bnVsbCwiY3VzdG9tZXJfdHlwZSI6ImluZGl2aWR1YWwiLCJuYW1lIjoiSXp6b3UgTWlrb3UiLCJpbnZvaWNlc19jb3VudCI6MTUsImNyZWF0ZWRfYXQiOiIyMDI2LTA0LTA4VDA5OjQ4OjE4KzAxOjAwIiwidXBkYXRlZF9hdCI6IjIwMjYtMDQtMDhUMDk6NDg6MTgrMDE6MDAiLCJiaWxsaW5nX2FkZHJlc3MiOnsic3RyZWV0IjoiQmQuIE1vaGFtZWQgSUkgMjAwNCIsInN0cmVldDIiOiIiLCJjaXR5IjoiTWFycmFrZXNoIiwicG9zdGFsX2NvZGUiOiI0NTAwMCIsImNvdW50cnkiOiJNb3JvY2NvIiwiY291bnRyeV9jb2RlIjoiTUEifX0seyJpZCI6IjAxOWQ2YzQ0LTUzZjktNzU3MC05YjE0LTdhZDEwYmY2Y2EzOSIsInBlcnNvbl9uYW1lIjoiSXNtYWVsIElzc291cyIsImNvbXBhbnlfbmFtZSI6IkNhdGVyaW5nIERlbHV4ZSIsImVtYWlsIjpudWxsLCJwaG9uZSI6bnVsbCwidGF4X2lkIjoiOTIzODI0IiwiaWNlX251bWJlciI6Ijc0NTIzOTU5MjAyODEyOCIsImN1c3RvbWVyX3R5cGUiOiJidXNpbmVzcyIsIm5hbWUiOiJDYXRlcmluZyBEZWx1eGUiLCJpbnZvaWNlc19jb3VudCI6MCwiY3JlYXRlZF9hdCI6IjIwMjYtMDQtMDhUMDk6NDU6MTArMDE6MDAiLCJ1cGRhdGVkX2F0IjoiMjAyNi0wNC0wOFQwOTo0NToxMCswMTowMCIsImJpbGxpbmdfYWRkcmVzcyI6eyJzdHJlZXQiOiJBdi4gWmVya3RvdW5pIDEyMyIsInN0cmVldDIiOiJSZXNpZGVuY2UgQWwgUm9ibyIsImNpdHkiOiJDYXNibGFuY2EiLCJwb3N0YWxfY29kZSI6IjIwMDAwIiwiY291bnRyeSI6Ik1vcm9jY28iLCJjb3VudHJ5X2NvZGUiOiJNQSJ9fV0sImhhc19tb3JlIjpmYWxzZSwibmV4dF9jdXJzb3IiOm51bGx9
-  recorded_at: Mon, 04 May 2026 16:29:21 GMT
+        eyJkYXRhIjpbeyJpZCI6ImZpeHR1cmUtZGVsZXRhYmxlLWN1c3RvbWVyLWlkIiwicGVyc29uX25hbWUiOm51bGwsImNvbXBhbnlfbmFtZSI6IlphenUgRml4dHVyZSBDbyDigJQgZGVsZXRhYmxlICh6YXp1LXJ1YnktZml4dHVyZS12MSkiLCJlbWFpbCI6ImZpeHR1cmUtZGVsZXRhYmxlLTBiZDI0NjFmQGV4YW1wbGUuY29tIiwicGhvbmUiOm51bGwsInRheF9pZCI6bnVsbCwiaWNlX251bWJlciI6IjMwNzU4NjM1NzAwMDcwNiIsImN1c3RvbWVyX3R5cGUiOiJidXNpbmVzcyIsIm5hbWUiOiJaYXp1IEZpeHR1cmUgQ28g4oCUIGRlbGV0YWJsZSAoemF6dS1ydWJ5LWZpeHR1cmUtdjEpIiwiaW52b2ljZXNfY291bnQiOjAsImNyZWF0ZWRfYXQiOiIyMDI2LTA1LTA3VDA3OjE2OjExKzAxOjAwIiwidXBkYXRlZF9hdCI6IjIwMjYtMDUtMDdUMDc6MTY6MTErMDE6MDAiLCJiaWxsaW5nX2FkZHJlc3MiOm51bGx9LHsiaWQiOiJmaXh0dXJlLWN1c3RvbWVyLWlkIiwicGVyc29uX25hbWUiOm51bGwsImNvbXBhbnlfbmFtZSI6IlphenUgRml4dHVyZSBDbyDigJQgcHJpbWFyeSAoemF6dS1ydWJ5LWZpeHR1cmUtdjEpIiwiZW1haWwiOiJmaXh0dXJlLXByaW1hcnktMDA3ZjcwNWVAZXhhbXBsZS5jb20iLCJwaG9uZSI6bnVsbCwidGF4X2lkIjpudWxsLCJpY2VfbnVtYmVyIjoiODI5MDM0NjYwMjQ1ODYyIiwiY3VzdG9tZXJfdHlwZSI6ImJ1c2luZXNzIiwibmFtZSI6IlphenUgRml4dHVyZSBDbyDigJQgcHJpbWFyeSAoemF6dS1ydWJ5LWZpeHR1cmUtdjEpIiwiaW52b2ljZXNfY291bnQiOjIsImNyZWF0ZWRfYXQiOiIyMDI2LTA1LTA3VDA3OjE2OjExKzAxOjAwIiwidXBkYXRlZF9hdCI6IjIwMjYtMDUtMDdUMDc6MTY6MTErMDE6MDAiLCJiaWxsaW5nX2FkZHJlc3MiOm51bGx9LHsiaWQiOiIwMTlkNmM0Ny0zMzVhLTc0MGQtYjJjYi0yYWUwNDIwY2Y1MGMiLCJwZXJzb25fbmFtZSI6Ikl6em91IE1pa291IiwiY29tcGFueV9uYW1lIjoiIiwiZW1haWwiOiJyaW5zZS5qYWNvYnMrbWlrb3VAZ2V0LXphenUuY29tIiwicGhvbmUiOm51bGwsInRheF9pZCI6bnVsbCwiaWNlX251bWJlciI6bnVsbCwiY3VzdG9tZXJfdHlwZSI6ImluZGl2aWR1YWwiLCJuYW1lIjoiSXp6b3UgTWlrb3UiLCJpbnZvaWNlc19jb3VudCI6MTYsImNyZWF0ZWRfYXQiOiIyMDI2LTA0LTA4VDA5OjQ4OjE4KzAxOjAwIiwidXBkYXRlZF9hdCI6IjIwMjYtMDQtMDhUMDk6NDg6MTgrMDE6MDAiLCJiaWxsaW5nX2FkZHJlc3MiOnsic3RyZWV0IjoiQmQuIE1vaGFtZWQgSUkgMjAwNCIsInN0cmVldDIiOiIiLCJjaXR5IjoiTWFycmFrZXNoIiwicG9zdGFsX2NvZGUiOiI0NTAwMCIsImNvdW50cnkiOiJNb3JvY2NvIiwiY291bnRyeV9jb2RlIjoiTUEifX0seyJpZCI6IjAxOWQ2YzQ0LTUzZjktNzU3MC05YjE0LTdhZDEwYmY2Y2EzOSIsInBlcnNvbl9uYW1lIjoiSXNtYWVsIElzc291cyIsImNvbXBhbnlfbmFtZSI6IkNhdGVyaW5nIERlbHV4ZSIsImVtYWlsIjpudWxsLCJwaG9uZSI6bnVsbCwidGF4X2lkIjoiOTIzODI0IiwiaWNlX251bWJlciI6Ijc0NTIzOTU5MjAyODEyOCIsImN1c3RvbWVyX3R5cGUiOiJidXNpbmVzcyIsIm5hbWUiOiJDYXRlcmluZyBEZWx1eGUiLCJpbnZvaWNlc19jb3VudCI6MCwiY3JlYXRlZF9hdCI6IjIwMjYtMDQtMDhUMDk6NDU6MTArMDE6MDAiLCJ1cGRhdGVkX2F0IjoiMjAyNi0wNC0wOFQwOTo0NToxMCswMTowMCIsImJpbGxpbmdfYWRkcmVzcyI6eyJzdHJlZXQiOiJBdi4gWmVya3RvdW5pIDEyMyIsInN0cmVldDIiOiJSZXNpZGVuY2UgQWwgUm9ibyIsImNpdHkiOiJDYXNibGFuY2EiLCJwb3N0YWxfY29kZSI6IjIwMDAwIiwiY291bnRyeSI6Ik1vcm9jY28iLCJjb3VudHJ5X2NvZGUiOiJNQSJ9fV0sImhhc19tb3JlIjpmYWxzZSwibmV4dF9jdXJzb3IiOm51bGx9
+  recorded_at: Thu, 07 May 2026 06:16:22 GMT
 recorded_with: VCR 6.4.0

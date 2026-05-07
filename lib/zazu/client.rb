@@ -45,6 +45,10 @@ module Zazu
       @accounts ||= Resources::Accounts.new(self)
     end
 
+    def checkout_sessions
+      @checkout_sessions ||= Resources::CheckoutSessions.new(self)
+    end
+
     def customers
       @customers ||= Resources::Customers.new(self)
     end
