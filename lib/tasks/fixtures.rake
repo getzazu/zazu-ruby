@@ -65,6 +65,7 @@ module Fixtures
       ZAZU_FIXTURE_ENABLED_WEBHOOK_ID
       ZAZU_FIXTURE_DISABLED_WEBHOOK_ID
       ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID
+      ZAZU_FIXTURE_CHECKOUT_SESSION_ID
     ].freeze
 
     def initialize
@@ -103,6 +104,9 @@ module Fixtures
 
       log "Seeding webhook endpoints…"
       seed_webhook_endpoints!
+
+      log "Seeding checkout session…"
+      seed_checkout_session!
 
       emit_env_block
     end
@@ -243,6 +247,24 @@ module Fixtures
         description: "[#{FIXTURE_TAG}] #{suffix}"
       )
       response.body["id"]
+    end
+
+    # Checkout sessions have no list/update/delete endpoints — they
+    # just sit on staging once created. We don't include them in
+    # find_stale_fixtures or teardown because there's no API to find
+    # or clean them. A fresh one is created on every seed run; the
+    # old ones are inert (their cassettes are scrubbed before commit).
+    def seed_checkout_session!
+      response = @client.checkout_sessions.create(
+        account_id: @account_id,
+        amount: "100.00",
+        success_url: "https://example.com/zazu-fixture-success?session_id={CHECKOUT_SESSION_ID}",
+        cancel_url: "https://example.com/zazu-fixture-cancel",
+        description: "[#{FIXTURE_TAG}] checkout session",
+        customer_email: "fixture-checkout-#{SecureRandom.hex(4)}@example.com",
+        metadata: { fixture_marker: fixture_marker("checkout") }
+      )
+      @ids["ZAZU_FIXTURE_CHECKOUT_SESSION_ID"] = response.body["id"]
     end
 
     # --- Teardown steps -----------------------------------------------------

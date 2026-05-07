@@ -69,6 +69,16 @@ zazu.payment_links.create(
 )
 zazu.payment_links.cancel("01a0...")
 
+zazu.checkout_sessions.create(
+  account_id: "019dde7d-...",
+  amount: "1500.00",
+  success_url: "https://merchant.example.com/success?session_id={CHECKOUT_SESSION_ID}",
+  cancel_url: "https://merchant.example.com/cancel",
+  customer_email: "buyer@example.com",
+  metadata: { order_id: "ORD-123" }
+)
+zazu.checkout_sessions.get("cs_...")
+
 zazu.webhook_endpoints.list
 zazu.webhook_endpoints.create(
   url: "https://example.com/webhooks/zazu",

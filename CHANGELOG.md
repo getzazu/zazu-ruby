@@ -7,6 +7,13 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+### Added
+
+- `Zazu::Resources::CheckoutSessions` — `create` and `get` for one-off
+  hosted checkout sessions. Status enum: `open`, `processing`,
+  `complete`, `expired` (read-only — no API to mutate). No list, no
+  update, no delete; sessions are addressed by their `cs_…` id.
+
 ## [0.1.0]
 
 Initial release.

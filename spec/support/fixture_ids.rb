@@ -22,7 +22,8 @@ module Zazu
       "ZAZU_FIXTURE_WEBHOOK_ID" => "fixture-webhook-id",
       "ZAZU_FIXTURE_ENABLED_WEBHOOK_ID" => "fixture-enabled-webhook-id",
       "ZAZU_FIXTURE_DISABLED_WEBHOOK_ID" => "fixture-disabled-webhook-id",
-      "ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID" => "fixture-deletable-webhook-id"
+      "ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID" => "fixture-deletable-webhook-id",
+      "ZAZU_FIXTURE_CHECKOUT_SESSION_ID" => "fixture-checkout-session-id"
     }.freeze
 
     def fixture_id(env_var)

@@ -10,7 +10,7 @@ http_interactions:
       Authorization:
       - Bearer <ZAZU_API_KEY>
       User-Agent:
-      - zazu-ruby/0.1.1
+      - zazu-ruby/0.1.3
       Accept:
       - application/json
       Accept-Encoding:
@@ -21,7 +21,7 @@ http_interactions:
       message: No Content
     headers:
       Date:
-      - Mon, 04 May 2026 16:29:28 GMT
+      - Thu, 07 May 2026 07:39:31 GMT
       Connection:
       - keep-alive
       Cache-Control:
@@ -33,7 +33,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-bA9o0HnEjXB46c+MMP9YHw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-xLcKgOJ0560uTlxxSuqlmw==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -73,7 +73,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.190823'
+      - '0.220485'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -81,7 +81,7 @@ http_interactions:
       Cf-Cache-Status:
       - DYNAMIC
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=MueRBg5%2F8%2FPn8nwjq23So1RnigdmyG2SKaxEO4thS2rNPd8YCjFJvs1pt8dU%2FR6Ct5%2FD0daffFOrw5ZAZ05M0LMZweqUuQX4vEjutwjSRM56wx8eJHIuEVf6%2F8hgKLLIWQ%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=gmcVLH5Hf%2FNhRK6jjXwTI%2Bv4QXkQEIXqwPt28xrnxn7P7rVqRmW1G42FW3L1hMfHcdKKulN3uy692hK%2FL6Wjawi%2B5vJcY9uMC3lJLiqgNVJxFBs8hnb0X%2BBrVOd6vDjgNw%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Expect-Ct:
@@ -89,9 +89,9 @@ http_interactions:
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f68e26d692900a6-CDG
+      - 9f7e9240a8bb9760-FRA
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Mon, 04 May 2026 16:29:28 GMT
+  recorded_at: Thu, 07 May 2026 07:39:31 GMT
 recorded_with: VCR 6.4.0

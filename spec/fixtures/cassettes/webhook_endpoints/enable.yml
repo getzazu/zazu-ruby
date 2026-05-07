@@ -10,7 +10,7 @@ http_interactions:
       Authorization:
       - Bearer <ZAZU_API_KEY>
       User-Agent:
-      - zazu-ruby/0.1.1
+      - zazu-ruby/0.1.3
       Accept:
       - application/json
       Content-Length:
@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 04 May 2026 16:29:35 GMT
+      - Thu, 07 May 2026 07:39:40 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -39,7 +39,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-daXXDzvF4d5s+n+zGLSoYg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-7XEE6OwsMDISj8132aoigA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -67,7 +67,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"0a4dbdedec37871e45796295cbf7e4a9"
+      - W/"99b8e28e75987061589eb32cece7735a"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -81,7 +81,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.102957'
+      - '0.107379'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -91,16 +91,16 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=qV3KSwV9TLClGTki3J%2FYSv%2F%2FcnLkT6b5kWNcUYgLoRM9OrWOmkQTQc6vXGKcy%2FfGQotYXAtV2Llt5nh306tvx4zcgRPP1dft4JA0ecL%2B1nmpIVVFB1rSe3zO1VxrU%2FbaKw%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=VMAyQGgRGGhKP9M0DVTUzHkC%2BRg5c3Zxj8OKfgfagCdyl%2FOEmVqDdE%2BPVyWbPPkNTq0LHIiKJyllvkyx7QYhKxGHaHbnTKQAWFJhG61w%2BsiLvbHtSzpiEgP6dxxIquheLQ%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f68e2989a8deba8-CDG
+      - 9f7e92774cbcd34a-FRA
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"fixture-disabled-webhook-id","url":"https://example.com/zazu-fixture-disabled-50a057a7","description":"[zazu-ruby-fixture]
-        disabled","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-04T17:29:16+01:00","updated_at":"2026-05-04T17:29:16+01:00"}'
-  recorded_at: Mon, 04 May 2026 16:29:35 GMT
+      string: '{"id":"fixture-disabled-webhook-id","url":"https://example.com/zazu-fixture-disabled-c2ba52d9","description":"[zazu-ruby-fixture]
+        disabled","events":["payment_link.paid"],"status":"active","consecutive_failures":0,"disabled_at":null,"created_at":"2026-05-07T08:39:15+01:00","updated_at":"2026-05-07T08:39:15+01:00"}'
+  recorded_at: Thu, 07 May 2026 07:39:39 GMT
 recorded_with: VCR 6.4.0
