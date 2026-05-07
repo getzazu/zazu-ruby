@@ -23,7 +23,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 07 May 2026 06:16:34 GMT
+      - Thu, 07 May 2026 06:42:46 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -39,7 +39,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-TSbxknao5iMJ8pfuCCnaiA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-svFg8w8wvn8/VrOSuHwQGg==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -67,7 +67,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"29f81ef219579c7c1e5aacd2fa76d346"
+      - W/"870fb5c09fa7a21ebedb953aafbe1055"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -81,7 +81,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.205481'
+      - '0.200061'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -91,16 +91,16 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=IF9XV9BQvXApdpiNowdy3QijQXsBrnsjMxdon9LjRnpqYVQ4teS6oLgwko%2BMpdKZv0hmu2NCrsYlY%2Beh1YjjX9sZTb5GbW7Yv51mKpy1fTlc%2FUdP8O6yLMMV6106JF9Zag%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=mBazB%2F2vOqT3zsXLeyUq%2BcW3elEhN8RZRAmweAqGsO5T6TSw3E3M%2Bg8Q9WnalVX94q8ovLTmc0mxxliciuE6YIh9XUj376LV0hpFJJE1pLtHANKFB%2FLtQHi3kIcOXwdjMg%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e18bbee0a0374-FRA
+      - 9f7e3f2089d5d2fa-FRA
     body:
       encoding: ASCII-8BIT
       string: !binary |-
-        eyJpZCI6ImZpeHR1cmUtY2FuY2VsbGFibGUtcGF5bWVudC1saW5rLWlkIiwic2x1ZyI6ImdkTktiRGFodnZFbiIsImxpbmtfdHlwZSI6InNpbmdsZSIsImN1cnJlbmN5X2NvZGUiOiJNQUQiLCJ0aXRsZSI6IlphenUgRml4dHVyZSDigJQgY2FuY2VsbGFibGUiLCJkZXNjcmlwdGlvbiI6Ilt6YXp1LXJ1YnktZml4dHVyZV0gY2FuY2VsbGFibGUiLCJwYXltZW50X3JlZmVyZW5jZSI6ImZpeHR1cmUtY2FuY2VsbGFibGUtZmIzM2E4ZGQiLCJwYXltZW50c19jb3VudCI6MCwibWF4X3BheW1lbnRzIjpudWxsLCJyZWRpcmVjdF91cmwiOm51bGwsImludm9pY2VfaWQiOm51bGwsInN0YXR1cyI6ImNhbmNlbGxlZCIsImFtb3VudCI6IjEwMC4wIiwidXJsIjoiaHR0cHM6Ly9wYXkuc3RhZ2luZy56YXp1Lm1hL3BheW1lbnQtbGluay9nZE5LYkRhaHZ2RW4iLCJleHBpcmVzX2F0IjpudWxsLCJwYWlkX2F0IjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNi0wNS0wN1QwNzoxNjoxMyswMTowMCIsInVwZGF0ZWRfYXQiOiIyMDI2LTA1LTA3VDA3OjE2OjM0KzAxOjAwIiwiYWNjb3VudCI6eyJpZCI6ImZpeHR1cmUtYWNjb3VudC1pZCIsIm5hbWUiOiJDdXJyZW50IEFjY291bnQiLCJjdXJyZW5jeV9jb2RlIjoiTUFEIiwicmliIjoiODI3NjQwMDAwNjcwMDAwMDAwMDIxODg0In19
-  recorded_at: Thu, 07 May 2026 06:16:33 GMT
+        eyJpZCI6ImZpeHR1cmUtY2FuY2VsbGFibGUtcGF5bWVudC1saW5rLWlkIiwic2x1ZyI6ImNnUFNUUFF5c1JDeCIsImxpbmtfdHlwZSI6InNpbmdsZSIsImN1cnJlbmN5X2NvZGUiOiJNQUQiLCJ0aXRsZSI6IlphenUgRml4dHVyZSDigJQgY2FuY2VsbGFibGUiLCJkZXNjcmlwdGlvbiI6Ilt6YXp1LXJ1YnktZml4dHVyZV0gY2FuY2VsbGFibGUiLCJwYXltZW50X3JlZmVyZW5jZSI6ImZpeHR1cmUtY2FuY2VsbGFibGUtMTAxOWVlMWYiLCJwYXltZW50c19jb3VudCI6MCwibWF4X3BheW1lbnRzIjpudWxsLCJyZWRpcmVjdF91cmwiOm51bGwsImludm9pY2VfaWQiOm51bGwsInN0YXR1cyI6ImNhbmNlbGxlZCIsImFtb3VudCI6IjEwMC4wIiwidXJsIjoiaHR0cHM6Ly9wYXkuc3RhZ2luZy56YXp1Lm1hL3BheW1lbnQtbGluay9jZ1BTVFBReXNSQ3giLCJleHBpcmVzX2F0IjpudWxsLCJwYWlkX2F0IjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyNi0wNS0wN1QwNzo0MjoyNSswMTowMCIsInVwZGF0ZWRfYXQiOiIyMDI2LTA1LTA3VDA3OjQyOjQ2KzAxOjAwIiwiYWNjb3VudCI6eyJpZCI6ImZpeHR1cmUtYWNjb3VudC1pZCIsIm5hbWUiOiJDdXJyZW50IEFjY291bnQiLCJjdXJyZW5jeV9jb2RlIjoiTUFEIiwicmliIjoiODI3NjQwMDAwNjcwMDAwMDAwMDIxODg0In19
+  recorded_at: Thu, 07 May 2026 06:42:46 GMT
 recorded_with: VCR 6.4.0
