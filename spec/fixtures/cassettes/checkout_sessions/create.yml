@@ -24,7 +24,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Thu, 07 May 2026 07:25:05 GMT
+      - Thu, 07 May 2026 07:39:21 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
@@ -40,7 +40,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-Ig6VN87y31rotYqjJBYNog==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-AQogpkNy/p3Dgdnel9IClA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -68,7 +68,7 @@ http_interactions:
         https://www.intercom-reporting.com https://*.sumsub.com https://calendly.com;
         manifest-src ''self''; report-uri /csp-violation-reports'
       Etag:
-      - W/"1aa175dc22a20522ea0283eea6b7274c"
+      - W/"9b563eb0e8714ea1f44416968dbac483"
       Referrer-Policy:
       - same-origin
       Strict-Transport-Security:
@@ -82,7 +82,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.134330'
+      - '0.145675'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -92,16 +92,16 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=kjmONipFypOXiUvxrTu3ICrYSUyFkQF5hdHEE5Tps1WslYmeTy5wpHUoagxdnM7ezKE3xJivVgAonh7gTWpjDh7muAxqW7ENXUeHBCA3iIgKU%2FR3THeiQdUU3Ley2ON91Q%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=8yhC%2F8AFbGQ3K3jb1IF9XJ6EO%2B9dR%2FOjhy4m0%2BP84lEx0L2hRFjZQ1f27%2F50G%2FOdDlAtVnyyPSS8k1NOg58%2B43ZGRVW7QhWLLhdbME4QpxaY7epSZG30bJzMJjgVCyY%2B7w%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e7d1c9e8e9b82-FRA
+      - 9f7e9203f8403642-FRA
     body:
       encoding: UTF-8
       string: '{"currency_code":"MAD","metadata":{"order_id":"ORD-FIXTURE"},"customer_email":"fixture@example.com","description":"Created
-        by zazu-ruby fixture spec","cancel_url":"https://example.com/zazu-fixture-cancel","id":"cs_xImeCASnT2rUlFwMCajaiJg8","url":"https://pay.staging.zazu.ma/checkout/cs_xImeCASnT2rUlFwMCajaiJg8","status":"open","amount":"100.0","success_url":"https://example.com/zazu-fixture-success?session_id=cs_xImeCASnT2rUlFwMCajaiJg8","expires_at":"2026-05-07T08:55:05+01:00","completed_at":null,"created_at":"2026-05-07T08:25:05+01:00"}'
-  recorded_at: Thu, 07 May 2026 07:25:05 GMT
+        by zazu-ruby fixture spec","cancel_url":"https://example.com/zazu-fixture-cancel","id":"cs_20OoDQ3U1LlTHdIHh5rEJynM","url":"https://pay.staging.zazu.ma/checkout/cs_20OoDQ3U1LlTHdIHh5rEJynM","status":"open","amount":"100.0","success_url":"https://example.com/zazu-fixture-success?session_id=cs_20OoDQ3U1LlTHdIHh5rEJynM","expires_at":"2026-05-07T09:09:21+01:00","completed_at":null,"created_at":"2026-05-07T08:39:21+01:00"}'
+  recorded_at: Thu, 07 May 2026 07:39:21 GMT
 recorded_with: VCR 6.4.0

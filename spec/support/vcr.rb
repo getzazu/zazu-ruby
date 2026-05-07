@@ -22,6 +22,7 @@
 #   - Sensitive response fields by name (recursive, any nesting depth):
 #       signing_secret → "<WEBHOOK_SIGNING_SECRET>"
 #       rib            → "<RIB>"
+#       next_cursor    → "<NEXT_CURSOR>" (encodes a real non-fixture record)
 # Even if a developer pastes a real key into a test or pulls one
 # from .env, the committed cassette is scrubbed.
 
@@ -76,7 +77,10 @@ end
 # Matched by exact JSON key at any nesting depth.
 SENSITIVE_FIELD_PLACEHOLDERS = {
   "signing_secret" => "<WEBHOOK_SIGNING_SECRET>",
-  "rib" => "<RIB>" # Moroccan bank account / routing identifier
+  "rib" => "<RIB>", # Moroccan bank account / routing identifier
+  # Cursor encodes a real non-fixture record's timestamp + UUID; it
+  # churns on every re-record and points at staging internals.
+  "next_cursor" => "<NEXT_CURSOR>"
 }.freeze
 
 # Recursively replace sensitive field values with placeholders.
@@ -96,7 +100,11 @@ def scrub_sensitive_fields!(value)
     end
     changed
   when Array
-    value.any? { |v| scrub_sensitive_fields!(v) }
+    # Don't use `any?` — it short-circuits and leaves subsequent
+    # elements unscrubbed. Walk every element.
+    changed = false
+    value.each { |v| changed = true if scrub_sensitive_fields!(v) }
+    changed
   else
     false
   end

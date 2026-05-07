@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 07 May 2026 07:25:03 GMT
+      - Thu, 07 May 2026 07:39:20 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -37,7 +37,7 @@ http_interactions:
         https://static.sumsub.com https://js.evervault.com https://pay.google.com/gp/p/js/pay.js
         https://applepay.cdn-apple.com https://js.stripe.com https://www.google-analytics.com
         https://www.googletagmanager.com https://assets.calendly.com ''strict-dynamic''
-        ''nonce-UuqoPrDGeiqEBVsh75qWew==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
+        ''nonce-LyjqSmRyELVYCfGtxubxFA==''; style-src ''self'' ''unsafe-inline'' https://fonts.googleapis.com;
         font-src ''self'' https://fonts.gstatic.com data: https://js.intercomcdn.com
         https://js.intercomdcn.eu https://fonts.intercomcdn.com; img-src ''self''
         data: blob: https://staging.zazu.ma https://fsn1.your-objectstorage.com https://js.intercomcdn.com
@@ -79,7 +79,7 @@ http_interactions:
       X-Request-Id:
       - "<REQUEST_ID>"
       X-Runtime:
-      - '0.208038'
+      - '0.272683'
       X-Xss-Protection:
       - 1; mode=block
       Zazu-Version:
@@ -89,18 +89,18 @@ http_interactions:
       Expect-Ct:
       - max-age=86400, enforce
       Report-To:
-      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=zaAZtWuUFJJtT2EqvG4HwQm8K82v%2B4pW2HdZiL9elRkpOaJWU7aDZ7xT2L2wmli261eFRkxzmWPPo5jn5ZPN9A1k6aOO%2FjmGvsrFXDN1X5jp2zVUjWrctcHH9xu%2F9Hfa7g%3D%3D"}]}'
+      - '{"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=GJwWjtmJi8PKDwYZR9LUoOV7H%2BX%2FnFC63TAPFhx00xEAFNiPtQoepkE%2FMP1VJnECgJJ4Xut0IYn7S19uVboJSszC%2FWD55kRmp6zvDvOZ9B5OXq1y9WqSXhuJRMCKSwRquw%3D%3D"}]}'
       Nel:
       - '{"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}'
       Server:
       - cloudflare
       Cf-Ray:
-      - 9f7e7d11885bd389-FRA
+      - 9f7e91f9281c4dbe-FRA
     body:
       encoding: UTF-8
       string: '{"data":[{"id":"fixture-transaction-id","account_id":"fixture-account-id","operation":"credit","currency_code":"MAD","internal_transfer":false,"other_name":"Test
         Name","external_id":"11801","provider_name":"chari_money","transfer_id":null,"card_payment_id":null,"card_topup_id":"019e0096-23b1-7993-9a74-e68b861cbec2","posting_id":"019e0096-3a1d-7a62-89c4-9d3ae5f7f9fa","amount":"931.0","account_balance_after":"39449.98","source_type":"card_topup","source_id":"019e0096-23b1-7993-9a74-e68b861cbec2","transaction_type":"Card
         Top-up","reference":"P24-260145","label":"Rechargement par carte - Test Name","posted_at":"2026-05-07T04:58:25+01:00","value_date":"2026-05-07","created_at":"2026-05-07T04:58:25+01:00","updated_at":"2026-05-07T04:59:05+01:00","account":{"id":"fixture-account-id","name":"Current
-        Account","currency_code":"MAD","rib":"<RIB>"}}],"has_more":true,"next_cursor":"MjAyNi0wNC0yOVQxMzoxOTo1My4wNDAzMzgrMDE6MDB8MDE5ZGQ5MzQtMGFlZC03ODJiLWI3YWQtM2M1N2FlZmQ1NTA1"}'
-  recorded_at: Thu, 07 May 2026 07:25:03 GMT
+        Account","currency_code":"MAD","rib":"<RIB>"}}],"has_more":true,"next_cursor":"<NEXT_CURSOR>"}'
+  recorded_at: Thu, 07 May 2026 07:39:19 GMT
 recorded_with: VCR 6.4.0
