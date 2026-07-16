@@ -45,6 +45,10 @@ module Zazu
       @accounts ||= Resources::Accounts.new(self)
     end
 
+    def beneficiaries
+      @beneficiaries ||= Resources::Beneficiaries.new(self)
+    end
+
     def checkout_sessions
       @checkout_sessions ||= Resources::CheckoutSessions.new(self)
     end
@@ -63,6 +67,10 @@ module Zazu
 
     def payment_links
       @payment_links ||= Resources::PaymentLinks.new(self)
+    end
+
+    def transfer_drafts
+      @transfer_drafts ||= Resources::TransferDrafts.new(self)
     end
 
     def webhook_endpoints

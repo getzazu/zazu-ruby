@@ -66,6 +66,8 @@ module Fixtures
       ZAZU_FIXTURE_DISABLED_WEBHOOK_ID
       ZAZU_FIXTURE_DELETABLE_WEBHOOK_ID
       ZAZU_FIXTURE_CHECKOUT_SESSION_ID
+      ZAZU_FIXTURE_BENEFICIARY_ID
+      ZAZU_FIXTURE_TRANSFER_DRAFT_ID
     ].freeze
 
     def initialize
@@ -107,6 +109,12 @@ module Fixtures
 
       log "Seeding checkout session…"
       seed_checkout_session!
+
+      log "Discovering beneficiary id…"
+      discover_beneficiary_id!
+
+      log "Seeding transfer draft…"
+      seed_transfer_draft!
 
       emit_env_block
     end
@@ -265,6 +273,33 @@ module Fixtures
         metadata: { fixture_marker: fixture_marker("checkout") }
       )
       @ids["ZAZU_FIXTURE_CHECKOUT_SESSION_ID"] = response.body["id"]
+    end
+
+    # Beneficiaries are read-only via the API (created in the dashboard) —
+    # like transactions, we discover one rather than seeding it. The staging
+    # entity must have at least one beneficiary with a bank account on file.
+    def discover_beneficiary_id!
+      page = @client.beneficiaries.list(limit: 1)
+      first = page.data.first
+      raise "No beneficiaries found on staging entity — create one in the dashboard first" unless first
+
+      @ids["ZAZU_FIXTURE_BENEFICIARY_ID"] = first["id"]
+    end
+
+    # Transfer drafts created via the API land in the in-app approval queue
+    # (status "requested") and are never executed unless a human approves —
+    # so seeding one moves no money. There is no delete endpoint; like
+    # checkout sessions, seeded drafts sit inert on staging and are excluded
+    # from find_stale_fixtures/teardown.
+    def seed_transfer_draft!
+      response = @client.transfer_drafts.create(
+        account_id: @account_id,
+        beneficiary_id: @ids.fetch("ZAZU_FIXTURE_BENEFICIARY_ID"),
+        amount: "1.00",
+        payment_reference: fixture_marker("transfer"),
+        internal_notes: "[#{FIXTURE_TAG}] transfer draft — do not approve"
+      )
+      @ids["ZAZU_FIXTURE_TRANSFER_DRAFT_ID"] = response.body["id"]
     end
 
     # --- Teardown steps -----------------------------------------------------
