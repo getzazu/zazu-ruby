@@ -7,6 +7,25 @@ This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 
 ## [Unreleased]
 
+## [0.2.1]
+
+### Added
+
+- `Zazu::Resources::TransferDrafts` — `create` and `get`. Creating a
+  draft routes it into the workspace's in-app approval flow; the API
+  never executes a transfer itself. Lifecycle: `requested` →
+  `processing` → `completed` / `failed`.
+- `Zazu::Resources::Beneficiaries` — `list` and `get`, the read-only
+  recipient directory (each beneficiary embeds its bank accounts;
+  the `default` one is used when a transfer names only the
+  beneficiary_id).
+- Fixture seeding: `discover_beneficiary_id!` + `seed_transfer_draft!`.
+  The transfer_drafts/beneficiaries cassettes in this release are
+  hand-authored against the documented contract; re-record via
+  `rake fixtures:record` once the endpoints are live on staging.
+
+## [0.2.0]
+
 ### Added
 
 - `Zazu::Resources::CheckoutSessions` — `create` and `get` for one-off
